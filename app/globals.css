@@ -1,26 +1,161 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color1: #eaeaea;
+  --color2: #333333;
+  --color3: #dbdbdb;
+  --color6: #434549;
+  --color7: #6d6d6d;
+  --color8: #141617;
+  --accent: #e27500;
+  --white: #ffffff;
+  --font: "General Sans", "Plus Jakarta Sans", "DM Sans", system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color1);
+  color: var(--color2);
+  font-family: var(--font);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent); color: #fff; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color1); }
+::-webkit-scrollbar-thumb { background: var(--color3); border-radius: 2px; }
+
+/* ── Typography helpers ── */
+.section-label {
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 0.82rem;
+  color: var(--color7);
+  font-weight: 400;
+}
+
+/* ── Buttons ── */
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.65rem 1.25rem;
+  border-radius: 30px;
+  font-size: 0.875rem;
+  font-family: var(--font);
+  font-weight: 500;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+.btn-accent:hover { background: #c97b00; transform: translateY(-1px); }
+
+.btn-border {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--color2);
+  background: var(--color1);
+  color: var(--color2);
+  padding: 0.65rem 1.25rem;
+  border-radius: 30px;
+  font-size: 0.875rem;
+  font-family: var(--font);
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-border:hover { background: var(--color2); color: var(--color1); }
+
+/* ── Service card ── */
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--color1);
+  border-radius: 35px;
+  padding: 5% 10%;
+  box-shadow: 2px 2px 70px 33px var(--color1);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.service-card:hover {
+  transform: scaleX(1.03) scaleY(1.03) translateX(0px) rotate(0deg) !important;
+  box-shadow: 4px 4px 80px 30px rgba(0,0,0,0.08);
+}
+
+/* ── Marquee ── */
+.marquee-wrap { overflow: hidden; }
+.marquee-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Social icon boxes ── */
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--color3);
+  border-radius: 10px;
+  color: var(--color2);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.social-icon:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ── Awards table row ── */
+.award-row {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color3);
+  align-items: center;
+  gap: 1rem;
+}
+.award-row:first-child { border-top: 1px solid var(--color3); }
+
+/* ── Career timeline ── */
+.career-row {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--color3);
+  align-items: center;
+  gap: 1rem;
+}
+.career-row:first-child { border-top: 1px solid var(--color3); }
+
+@media (max-width: 768px) {
+  .award-row { grid-template-columns: 1fr 1fr; }
+  .award-row > :last-child { display: none; }
+  .career-row { grid-template-columns: 1fr 1fr; }
+  .career-row > :last-child { display: none; }
 }
