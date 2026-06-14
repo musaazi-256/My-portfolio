@@ -1,9 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowRight, CalendarDays, Check, Copy, Star } from 'lucide-react'
+import { ArrowRight, Mail, Check, Copy, Star } from 'lucide-react'
 import Image from 'next/image'
 import { StatCard } from '@/components/Cards'
+import { CONTACT } from '@/data/constants'
 
 export function Hero() {
   const [copied, setCopied] = useState(false)
@@ -15,7 +16,7 @@ export function Hero() {
   ]
 
   async function copyEmail() {
-    await navigator.clipboard.writeText('musaaziignatius@gmail.com')
+    await navigator.clipboard.writeText(CONTACT.email)
     setCopied(true)
     window.setTimeout(() => setCopied(false), 2000)
   }
@@ -33,7 +34,7 @@ export function Hero() {
           </p>
           <HeroPortrait className="mt-8 lg:hidden" />
           <div className="mt-8 flex flex-nowrap justify-center gap-2 lg:justify-start lg:gap-4">
-            <a href="mailto:musaaziignatius@gmail.com" className="btn-primary gap-1.5 sm:gap-2"><CalendarDays size={15} className="sm:h-[18px] sm:w-[18px]" /> Book a Call</a>
+            <a href={CONTACT.bookingUrl} className="btn-primary gap-1.5 sm:gap-2"><Mail size={15} className="sm:h-[18px] sm:w-[18px]" /> Get in Touch</a>
             <a href="#work" className="btn-secondary gap-1.5 sm:gap-2">View Work <ArrowRight size={15} className="sm:h-[18px] sm:w-[18px]" /></a>
             <button type="button" onClick={copyEmail} className="btn-secondary gap-1.5 sm:gap-2">
               {copied ? <Check size={15} className="sm:h-[17px] sm:w-[17px]" /> : <Copy size={15} className="sm:h-[17px] sm:w-[17px]" />}

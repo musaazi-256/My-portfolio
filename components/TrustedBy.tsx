@@ -9,8 +9,8 @@ const brands = [
 
 export function TrustedBy() {
   return (
-    <section className="trusted-by py-6 sm:py-12">
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4 sm:gap-8 sm:px-6 lg:px-8">
+    <section className="trusted-by py-5 sm:py-8">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4 sm:gap-6 sm:px-6 lg:px-8">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-ink/40 sm:text-sm">
           Experience across
         </p>

@@ -35,13 +35,13 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="process-section">
+    <section id="process" className="process-section">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="inline-flex rounded-full bg-brand/10 px-4 py-2 text-sm font-black text-brand">How I Work</p>
           <h2 className="mt-5 text-3xl font-black tracking-tight text-ink sm:text-4xl md:text-5xl">A clear product design process.</h2>
           <p className="mt-5 text-base leading-7 text-ink/60 sm:text-lg sm:leading-8">
-            The timeline idea fits here because it helps founders and teams see that the work is structured, collaborative, and build-ready.
+            My process is structured but collaborative — built to keep founders informed and developers unblocked from first brief to launch.
           </p>
         </div>
 

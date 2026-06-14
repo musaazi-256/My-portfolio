@@ -1,3 +1,5 @@
+import { CONTACT } from '@/data/constants'
+
 const links = [
   { href: '#top', label: 'Home' },
   { href: '#work', label: 'Work' },
@@ -15,7 +17,7 @@ export function Header() {
             {link.label}
           </a>
         ))}
-        <a href="mailto:musaaziignatius@gmail.com" className="shrink-0 rounded-full bg-brand px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-brand-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-5 sm:py-3 sm:text-sm">Contact me</a>
+        <a href={`mailto:${CONTACT.email}`} className="shrink-0 rounded-full bg-brand px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-brand-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-5 sm:py-3 sm:text-sm">Contact me</a>
       </nav>
     </header>
   )

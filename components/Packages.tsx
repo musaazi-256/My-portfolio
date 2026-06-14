@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Check, ChevronDown } from 'lucide-react'
+import { CONTACT } from '@/data/constants'
 
 const basePlans = [
   {
@@ -37,8 +38,11 @@ const addOns = [
 
 type Currency = 'UGX' | 'USD'
 
+/** Exchange rate — last updated June 2026. Update when significantly out of date. */
+const UGX_PER_USD = 3800
+
 const formatUgx = (value: number) => `UGX ${new Intl.NumberFormat('en-US').format(value)}`
-const formatUsd = (value: number) => `$${new Intl.NumberFormat('en-US').format(Math.round(value / 3800))}`
+const formatUsd = (value: number) => `$${new Intl.NumberFormat('en-US').format(Math.round(value / UGX_PER_USD))}`
 const formatMoney = (value: number, currency: Currency) => currency === 'UGX' ? formatUgx(value) : formatUsd(value)
 const formatSecondaryMoney = (value: number, currency: Currency) => currency === 'UGX' ? `Approx. ${formatUsd(value)}` : `Approx. ${formatUgx(value)}`
 
@@ -78,7 +82,7 @@ export function Packages() {
   }
 
   return (
-    <section className="packages-section">
+    <section id="packages" className="packages-section">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="inline-flex rounded-full bg-brand/10 px-4 py-2 text-sm font-black text-brand">Packages</p>
@@ -120,7 +124,7 @@ export function Packages() {
                   </li>
                 ))}
               </ul>
-              <a href="mailto:musaaziignatius@gmail.com" className={index === 1 ? 'package-button package-button-featured' : 'package-button'}>
+              <a href={`mailto:${CONTACT.email}`} className={index === 1 ? 'package-button package-button-featured' : 'package-button'}>
                 Start Conversation
               </a>
             </article>
