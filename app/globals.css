@@ -22,7 +22,18 @@ body {
   font-family: var(--font-outfit), system-ui, -apple-system, sans-serif;
 }
 
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
 @media print {
+  html,
+  body {
+    width: 210mm;
+    min-height: 297mm;
+  }
+
   .no-print {
     display: none !important;
   }
@@ -30,17 +41,172 @@ body {
   body {
     background: #ffffff !important;
     color: #111111 !important;
+    font-size: 9.5pt !important;
+    line-height: 1.45 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   main {
     background: #ffffff !important;
   }
 
-  .proposal-section,
-  section,
-  article {
+  #top {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  #top > header {
+    break-inside: avoid;
+    border-radius: 14px !important;
+    box-shadow: none !important;
+    padding: 18px !important;
+  }
+
+  #top > header > div:first-child {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 175px !important;
+    gap: 18px !important;
+    align-items: end !important;
+  }
+
+  #top h1 {
+    font-size: 42pt !important;
+    line-height: 0.95 !important;
+  }
+
+  #top header p,
+  #top header span {
+    line-height: 1.35 !important;
+  }
+
+  #top header .mt-8 {
+    margin-top: 12px !important;
+  }
+
+  #top header .mt-9 {
+    margin-top: 16px !important;
+    padding-top: 14px !important;
+  }
+
+  #top header .grid.min-w-72 {
+    min-width: 0 !important;
+    gap: 8px !important;
+  }
+
+  #top header .rounded-3xl {
+    border-radius: 10px !important;
+    padding: 10px !important;
+  }
+
+  #top header .text-3xl {
+    font-size: 18pt !important;
+  }
+
+  #top header .flex.flex-wrap {
+    gap: 6px !important;
+    margin-top: 14px !important;
+  }
+
+  #top header .rounded-full {
+    padding: 4px 9px !important;
+    font-size: 8pt !important;
+  }
+
+  .proposal-section {
+    break-inside: auto;
+    page-break-inside: auto;
+    padding-top: 12mm !important;
+    padding-bottom: 0 !important;
+  }
+
+  .proposal-section > div:first-child {
+    break-after: avoid;
+    page-break-after: avoid;
+    margin-bottom: 12px !important;
+    padding-top: 12px !important;
+  }
+
+  .proposal-section h2 {
+    font-size: 22pt !important;
+    line-height: 1.08 !important;
+  }
+
+  .proposal-section h3 {
+    font-size: 12.5pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .proposal-section p,
+  .proposal-section li,
+  .proposal-section td,
+  .proposal-section th {
+    font-size: 8.8pt !important;
+    line-height: 1.42 !important;
+  }
+
+  .proposal-section .text-6xl,
+  .proposal-section .text-7xl {
+    font-size: 30pt !important;
+  }
+
+  .proposal-section .grid {
+    gap: 10px !important;
+  }
+
+  .proposal-section article,
+  .proposal-section table,
+  .proposal-section tr {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  .proposal-section .rounded-3xl,
+  .proposal-section .rounded-\[2rem\],
+  .proposal-section .rounded-2xl {
+    border-radius: 10px !important;
+    box-shadow: none !important;
+  }
+
+  .proposal-section .p-8,
+  .proposal-section .sm\:p-8,
+  .proposal-section .p-7,
+  .proposal-section .p-6,
+  .proposal-section .sm\:p-7 {
+    padding: 12px !important;
+  }
+
+  .proposal-section .p-5 {
+    padding: 9px !important;
+  }
+
+  .proposal-section .mt-7,
+  .proposal-section .mt-6,
+  .proposal-section .mt-5 {
+    margin-top: 10px !important;
+  }
+
+  .proposal-section .mb-8,
+  .proposal-section .mb-6 {
+    margin-bottom: 10px !important;
+  }
+
+  .proposal-section .space-y-3 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 5px !important;
+  }
+
+  .proposal-section svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  .proposal-section table {
+    font-size: 8pt !important;
+  }
+
+  .proposal-section th,
+  .proposal-section td {
+    padding: 6px 8px !important;
   }
 
   .page-break {
