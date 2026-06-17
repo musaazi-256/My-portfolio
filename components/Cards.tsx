@@ -69,7 +69,7 @@ export function PackageCard({ title, description, price }: { title: string; desc
 export function TestimonialCard({ quote, name, title }: { quote: string; name: string; title: string }) {
   return (
     <GlassCard>
-      <p className="text-lg leading-8 text-ink/75">"{quote}"</p>
+      <p className="text-lg leading-8 text-ink/75">&ldquo;{quote}&rdquo;</p>
       <div className="mt-6 border-t border-black/10 pt-5">
         <p className="font-black text-ink">{name}</p>
         <p className="mt-1 text-sm text-ink/50">{title}</p>

@@ -9,7 +9,7 @@ export function Testimonials() {
           <p className="section-kicker">Testimonials</p>
           <h2 className="mt-3 text-4xl font-black tracking-tight text-ink md:text-5xl">What collaborators <span className="accent-text">notice.</span></h2>
         </div>
-        <p className="max-w-xl leading-7 text-ink/[0.65]">Words from the founders, product teams, and creative collaborators I've worked with.</p>
+        <p className="max-w-xl leading-7 text-ink/[0.65]">Words from the founders, product teams, and creative collaborators I&apos;ve worked with.</p>
       </div>
       <div className="grid gap-5 md:grid-cols-2">
         {testimonials.map((testimonial) => <TestimonialCard key={testimonial.quote} {...testimonial} />)}

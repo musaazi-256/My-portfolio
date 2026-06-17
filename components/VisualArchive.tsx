@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 type ArchiveItem = {
   title: string
@@ -77,7 +77,7 @@ export function VisualArchive() {
   const x = useMotionValue(0)
   const smoothX = useSpring(x, { stiffness: 170, damping: 28, mass: 0.75 })
 
-  const setArchiveProgress = (value: number) => {
+  const setArchiveProgress = useCallback((value: number) => {
     const max = scrollDistanceRef.current
     const next = Math.min(max, Math.max(0, value))
 
@@ -86,7 +86,7 @@ export function VisualArchive() {
       edgeReleaseRef.current = null
     }
     x.set(-next)
-  }
+  }, [x])
 
   useEffect(() => {
     const measureRail = () => {
@@ -115,7 +115,7 @@ export function VisualArchive() {
       observer.disconnect()
       window.removeEventListener('resize', measureRail)
     }
-  }, [])
+  }, [setArchiveProgress])
 
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {
@@ -159,7 +159,7 @@ export function VisualArchive() {
     window.addEventListener('wheel', handleWheel, { passive: false })
 
     return () => window.removeEventListener('wheel', handleWheel)
-  }, [])
+  }, [setArchiveProgress])
 
   useEffect(() => {
     const handleTouchStart = (event: TouchEvent) => {
@@ -215,7 +215,7 @@ export function VisualArchive() {
       window.removeEventListener('touchstart', handleTouchStart)
       window.removeEventListener('touchmove', handleTouchMove)
     }
-  }, [])
+  }, [setArchiveProgress])
 
   const scroll = (direction: 'left' | 'right') => {
     const viewport = viewportRef.current
