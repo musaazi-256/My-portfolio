@@ -19,7 +19,8 @@ const STATUS_OPTIONS: Array<{ status: PrismaSupportCaseStatus; label: string }> 
   { status: "CLOSED", label: "Close" }
 ];
 
-export default async function AdminSupportCaseDetailPage({ params }: { params: { id: string } }) {
+export default async function AdminSupportCaseDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await requireAdminSession();
 
   const supportCase = await db.supportCase.findUnique({

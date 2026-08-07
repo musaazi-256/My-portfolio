@@ -16,7 +16,8 @@ import { BookingStatusBadge } from "@prototype/components/ui/status-badge";
 
 const CANCELLABLE = ["AUTH_REQUIRED", "PENDING_TRAVELLER_DETAILS", "PENDING_PAYMENT", "AWAITING_BUSINESS_CONFIRMATION", "CONFIRMED"];
 
-export default async function BookingDetailPage({ params }: { params: { id: string } }) {
+export default async function BookingDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth();
   if (!session?.user) redirect(`/auth/sign-in?returnTo=${encodeURIComponent(`/bookings/${params.id}`)}`);
 

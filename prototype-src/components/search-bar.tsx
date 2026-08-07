@@ -137,7 +137,7 @@ export function SearchBar({ className }: { className?: string }) {
     if (category === "guides") {
       const params = new URLSearchParams();
       if (guideDestination) params.set("q", guideDestination);
-      router.push(`/guides${params.toString() ? `?${params.toString()}` : ""}`);
+      router.push(`/prototype/guides${params.toString() ? `?${params.toString()}` : ""}`);
       return;
     }
 
@@ -168,7 +168,7 @@ export function SearchBar({ className }: { className?: string }) {
       params.set("passengers", passengers);
     }
 
-    router.push(`/search?${params.toString()}`);
+    router.push(`/prototype/search?${params.toString()}`);
   }
 
   return (

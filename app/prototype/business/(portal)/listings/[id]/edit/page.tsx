@@ -25,7 +25,8 @@ import {
 } from "@prototype/lib/business-listing-form";
 import { db } from "@prototype/lib/db";
 
-export default async function EditListingPage({ params }: { params: { id: string } }) {
+export default async function EditListingPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const { business, businessId } = await requireBusinessSession();
   if (!business || !businessId) redirect("/business/auth/sign-in");
 

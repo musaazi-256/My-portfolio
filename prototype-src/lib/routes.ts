@@ -1,32 +1,32 @@
 export const customerRoutes = [
-  "/",
-  "/explore",
-  "/search",
-  "/destinations",
-  "/accommodation/demo-lodge",
-  "/tours/demo-safari",
-  "/restaurants",
-  "/transport",
-  "/checkout",
-  "/bookings",
-  "/trip-planner",
-  "/profile"
+  "/prototype/",
+  "/prototype/explore",
+  "/prototype/search",
+  "/prototype/destinations",
+  "/prototype/accommodation/demo-lodge",
+  "/prototype/tours/demo-safari",
+  "/prototype/restaurants",
+  "/prototype/transport",
+  "/prototype/checkout",
+  "/prototype/bookings",
+  "/prototype/trip-planner",
+  "/prototype/profile"
 ];
 
 export const businessRoutes = [
-  "/business/dashboard",
-  "/business/verification",
-  "/business/listings",
-  "/business/bookings",
-  "/business/revenue"
+  "/prototype/business/dashboard",
+  "/prototype/business/verification",
+  "/prototype/business/listings",
+  "/prototype/business/bookings",
+  "/prototype/business/revenue"
 ];
 
 export const adminRoutes = [
-  "/admin/dashboard",
-  "/admin/verification",
-  "/admin/businesses",
-  "/admin/bookings",
-  "/admin/payments",
-  "/admin/support"
+  "/prototype/admin/dashboard",
+  "/prototype/admin/verification",
+  "/prototype/admin/businesses",
+  "/prototype/admin/bookings",
+  "/prototype/admin/payments",
+  "/prototype/admin/support"
 ];
 

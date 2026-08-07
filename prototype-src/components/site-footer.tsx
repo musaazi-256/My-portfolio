@@ -8,28 +8,28 @@ const COLUMNS = [
   {
     title: "Product",
     links: [
-      { href: "/accommodation", label: "Accommodation" },
-      { href: "/tours", label: "Safaris & tours" },
-      { href: "/restaurants", label: "Restaurants" },
-      { href: "/transport", label: "Transport" },
-      { href: "/destinations", label: "Destinations" }
+      { href: "/prototype/accommodation", label: "Accommodation" },
+      { href: "/prototype/tours", label: "Safaris & tours" },
+      { href: "/prototype/restaurants", label: "Restaurants" },
+      { href: "/prototype/transport", label: "Transport" },
+      { href: "/prototype/destinations", label: "Destinations" }
     ]
   },
   {
     title: "SafariNexa",
     links: [
-      { href: "/business", label: "List your business" },
-      { href: "/safety", label: "Safety & advisories" },
-      { href: "/trip-planner", label: "Trip planner" }
+      { href: "/prototype/business", label: "List your business" },
+      { href: "/prototype/safety", label: "Safety & advisories" },
+      { href: "/prototype/trip-planner", label: "Trip planner" }
     ]
   },
   {
     title: "Support",
     links: [
-      { href: "/support", label: "Get help" },
-      { href: "/auth/sign-in", label: "Sign in" },
-      { href: "/auth/create-account", label: "Create account" },
-      { href: "/bookings", label: "My bookings" }
+      { href: "/prototype/support", label: "Get help" },
+      { href: "/prototype/auth/sign-in", label: "Sign in" },
+      { href: "/prototype/auth/create-account", label: "Create account" },
+      { href: "/prototype/bookings", label: "My bookings" }
     ]
   }
 ];

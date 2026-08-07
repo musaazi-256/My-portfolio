@@ -21,7 +21,8 @@ import { ScoreBadge } from "@prototype/components/ui/rating";
 import { db } from "@prototype/lib/db";
 import { findEligibleReviewBooking, findRelatedListings, getRoomTypeAvailability, ratingBreakdown, ratingSummary } from "@prototype/lib/listings";
 
-export default async function AccommodationDetailPage({ params }: { params: { id: string } }) {
+export default async function AccommodationDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth();
 
   const listing = await db.listing.findUnique({

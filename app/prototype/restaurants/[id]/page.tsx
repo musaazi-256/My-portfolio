@@ -21,7 +21,8 @@ import { parseFirstUgxAmount } from "@prototype/lib/booking";
 import { db } from "@prototype/lib/db";
 import { findEligibleReviewBooking, findRelatedListings, ratingBreakdown, ratingSummary } from "@prototype/lib/listings";
 
-export default async function RestaurantDetailPage({ params }: { params: { id: string } }) {
+export default async function RestaurantDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth();
 
   const listing = await db.listing.findUnique({

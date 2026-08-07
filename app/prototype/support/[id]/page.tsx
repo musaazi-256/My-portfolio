@@ -13,7 +13,8 @@ import { db } from "@prototype/lib/db";
 import { toSupportCaseStatus } from "@prototype/lib/status";
 import { cn } from "@prototype/lib/utils";
 
-export default async function SupportCaseDetailPage({ params }: { params: { id: string } }) {
+export default async function SupportCaseDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth();
   if (!session?.user) redirect(`/auth/sign-in?returnTo=${encodeURIComponent(`/support/${params.id}`)}`);
 

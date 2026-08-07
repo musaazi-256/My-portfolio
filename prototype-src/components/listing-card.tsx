@@ -8,10 +8,10 @@ import { RoomPreviewModal } from "@prototype/components/rooms/room-preview-modal
 import { SaveButton } from "@prototype/components/save-button";
 
 const TYPE_HREF: Record<string, (id: string) => string> = {
-  Accommodation: (id) => `/accommodation/${id}`,
-  Tour: (id) => `/tours/${id}`,
-  Restaurant: (id) => `/restaurants/${id}`,
-  Transport: (id) => `/transport/${id}`
+  Accommodation: (id) => `/prototype/accommodation/${id}`,
+  Tour: (id) => `/prototype/tours/${id}`,
+  Restaurant: (id) => `/prototype/restaurants/${id}`,
+  Transport: (id) => `/prototype/transport/${id}`
 };
 
 export function ListingCard({

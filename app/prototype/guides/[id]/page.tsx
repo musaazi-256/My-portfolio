@@ -13,7 +13,8 @@ import { formatUGX } from "@prototype/lib/booking";
 import { db } from "@prototype/lib/db";
 import { formatListingPrice, guideRatingSummary, ratingSummary } from "@prototype/lib/listings";
 
-export default async function GuideDetailPage({ params }: { params: { id: string } }) {
+export default async function GuideDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const guide = await db.guide.findUnique({
     where: { id: params.id },
     include: {

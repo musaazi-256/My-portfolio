@@ -13,16 +13,16 @@ import { getUnreadNotificationCount } from "@prototype/lib/notifications";
 import { CartDropdown } from "@prototype/components/cart/cart-dropdown";
 
 const NAV_LINKS = [
-  { href: "/explore", label: "Explore" },
-  { href: "/accommodation", label: "Accommodation" },
-  { href: "/tours", label: "Tours" },
-  { href: "/guides", label: "Guides" },
-  { href: "/trip-planner", label: "Trip Planner" }
+  { href: "/prototype/explore", label: "Explore" },
+  { href: "/prototype/accommodation", label: "Accommodation" },
+  { href: "/prototype/tours", label: "Tours" },
+  { href: "/prototype/guides", label: "Guides" },
+  { href: "/prototype/trip-planner", label: "Trip Planner" }
 ];
 
 const AUTH_LINKS = [
-  { href: "/auth/sign-in", label: "Sign in" },
-  { href: "/auth/create-account", label: "Create account" }
+  { href: "/prototype/auth/sign-in", label: "Sign in" },
+  { href: "/prototype/auth/create-account", label: "Create account" }
 ];
 
 export async function SiteHeader() {

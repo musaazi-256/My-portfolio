@@ -18,7 +18,8 @@ const SECTIONS: Array<{ type: ServiceType; heading: string }> = [
   { type: "Transport", heading: "Transport" }
 ];
 
-export default async function DestinationDetailPage({ params }: { params: { slug: string } }) {
+export default async function DestinationDetailPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const destination = await db.destination.findUnique({ where: { slug: params.slug } });
   if (!destination) notFound();
 

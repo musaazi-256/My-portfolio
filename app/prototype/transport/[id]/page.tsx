@@ -20,7 +20,8 @@ import { formatUGX } from "@prototype/lib/booking";
 import { db } from "@prototype/lib/db";
 import { findEligibleReviewBooking, ratingBreakdown, ratingSummary } from "@prototype/lib/listings";
 
-export default async function TransportDetailPage({ params }: { params: { id: string } }) {
+export default async function TransportDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth();
 
   const listing = await db.listing.findUnique({

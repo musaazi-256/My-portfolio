@@ -11,7 +11,8 @@ import { requireBusinessSession } from "@prototype/lib/business";
 import { db } from "@prototype/lib/db";
 import { toBookingStatus } from "@prototype/lib/status";
 
-export default async function BusinessBookingDetailPage({ params }: { params: { id: string } }) {
+export default async function BusinessBookingDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const { business, businessId } = await requireBusinessSession();
   if (!business || !businessId) redirect("/business/auth/sign-in");
 
