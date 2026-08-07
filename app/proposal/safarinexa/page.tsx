@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, CheckCircle2, ExternalLink } from 'lucide-react'
 import { PrintButton } from '@/components/proposal/PrintButton'
 import { ProposalNav } from '@/components/proposal/ProposalNav'
 
@@ -689,7 +689,16 @@ export default function SafariNexaProposalPage() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
           <a href="#top" className="text-sm font-black text-ink">GIT Proposal</a>
           <ProposalNav toc={toc} />
-          <PrintButton />
+          <div className="flex items-center gap-3">
+            <a 
+              href="/prototype" 
+              className="btn-outline no-print gap-2"
+            >
+              <ExternalLink className="h-4 w-4" />
+              View Prototype
+            </a>
+            <PrintButton />
+          </div>
         </div>
       </div>
 
