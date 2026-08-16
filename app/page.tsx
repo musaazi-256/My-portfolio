@@ -7,7 +7,6 @@ import { Packages } from '@/components/Packages'
 import { Process } from '@/components/Process'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { Services } from '@/components/Services'
-import { Testimonials } from '@/components/Testimonials'
 import { TrustedBy } from '@/components/TrustedBy'
 import { VisualArchive } from '@/components/VisualArchive'
 
@@ -23,7 +22,6 @@ export default function Home() {
       <Process />
       <Packages />
       <Experience />
-      <Testimonials />
       <ScrollRevealText />
       <Contact />
     </main>

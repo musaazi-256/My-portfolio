@@ -1,285 +1,615 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-type ArchiveItem = {
-  title: string
-  category: string
-  image: string
-  alt: string
-  shape: 'hero' | 'portrait' | 'square' | 'wide'
+const visualWork = [
+  {
+    number: "01",
+    category: "Product UI",
+    title: "Interface Direction",
+    image: "/visual-work/adwrap-dashboard.jpg",
+    alt: "ADWrap product dashboard interface",
+    type: "hero",
+  },
+  {
+    number: "02",
+    category: "Brand Work",
+    title: "Campaign Visuals",
+    image: "/visual-work/safeboda-campaign.jpg",
+    alt: "SafeBoda campaign visual",
+    type: "portrait",
+  },
+  {
+    number: "03",
+    category: "Mobile Product",
+    title: "Mobile App Flow",
+    image: "/visual-work/dondolo-mobile.jpg",
+    alt: "Dondolo mobile application interface",
+    type: "portrait",
+  },
+  {
+    number: "04",
+    category: "Pitch Design",
+    title: "Founder Pitch Visual",
+    image: "/visual-work/pitch-design.jpg",
+    alt: "Product pitch presentation design",
+    type: "portrait",
+  },
+  {
+    number: "05",
+    category: "Web Design",
+    title: "Responsive Web UI",
+    image: "/visual-work/kyanja-web.jpg",
+    alt: "Kyanja Junior School responsive website",
+    type: "portrait",
+  },
+  {
+    number: "06",
+    category: "Motion",
+    title: "Motion & Content",
+    image: "/visual-work/motion-design.jpg",
+    alt: "Motion graphics and content design",
+    type: "portrait",
+  },
+  {
+    number: "07",
+    category: "Frontend",
+    title: "Build Ready",
+    image: "/visual-work/frontend-build.jpg",
+    alt: "Frontend implementation",
+    type: "wide",
+  },
+];
+
+const capabilities = [
+  {
+    title: "Product Thinking",
+    description: "Focused on solving real problems with clarity.",
+    icon: "grid",
+  },
+  {
+    title: "Visual Storytelling",
+    description: "Crafting visuals that communicate and convert.",
+    icon: "brush",
+  },
+  {
+    title: "System & Scale",
+    description: "Building reusable systems that grow with products.",
+    icon: "layers",
+  },
+  {
+    title: "Developer Handoff",
+    description: "Pixel-perfect specs and smooth collaboration.",
+    icon: "code",
+  },
+  {
+    title: "Speed & Iteration",
+    description: "Fast execution without compromising quality.",
+    icon: "bolt",
+  },
+];
+
+function CapabilityIcon({ type }: { type: string }) {
+  if (type === "brush") {
+    return (
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M14 4l6 6" />
+        <path d="M17 2l5 5" />
+        <path d="M19 8L8 19" />
+        <path d="M5 22c2.5-1 4-2.5 4-5-3.5 0-5 1.5-6 4-.2.6.4 1.2 2 1z" />
+      </svg>
+    );
+  }
+
+  if (type === "layers") {
+    return (
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M12 2l9 5-9 5-9-5 9-5z" />
+        <path d="M3 12l9 5 9-5" />
+        <path d="M3 17l9 5 9-5" />
+      </svg>
+    );
+  }
+
+  if (type === "code") {
+    return (
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M8 9l-4 3 4 3" />
+        <path d="M16 9l4 3-4 3" />
+        <path d="M14 5l-4 14" />
+      </svg>
+    );
+  }
+
+  if (type === "bolt") {
+    return (
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+    >
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
+    </svg>
+  );
 }
 
-const archiveItems: ArchiveItem[] = [
-  {
-    title: 'Interface Direction',
-    category: 'Product UI',
-    image: 'https://cdn.pixabay.com/photo/2015/01/09/11/11/office-594132_1280.jpg',
-    alt: 'Laptop workspace used for interface direction',
-    shape: 'hero',
-  },
-  {
-    title: 'Campaign Visuals',
-    category: 'Brand Work',
-    image: 'https://cdn.pixabay.com/photo/2016/11/29/06/15/plans-1867745_1280.jpg',
-    alt: 'Designer sketching campaign notes beside a laptop',
-    shape: 'portrait',
-  },
-  {
-    title: 'Mobile App Flow',
-    category: 'Mobile Product',
-    image: 'https://cdn.pixabay.com/photo/2016/11/29/09/32/business-1869530_1280.jpg',
-    alt: 'Mobile product planning workspace with phone and notes',
-    shape: 'square',
-  },
-  {
-    title: 'Founder Pitch Visual',
-    category: 'Pitch Design',
-    image: 'https://cdn.pixabay.com/photo/2015/05/31/10/55/man-791049_1280.jpg',
-    alt: 'Person reviewing presentation material on a tablet',
-    shape: 'wide',
-  },
-  {
-    title: 'Responsive Web UI',
-    category: 'Web Design',
-    image: 'https://cdn.pixabay.com/photo/2015/01/08/18/29/startup-593327_1280.jpg',
-    alt: 'Startup workspace with laptop and planning tools',
-    shape: 'portrait',
-  },
-  {
-    title: 'Product Workshop',
-    category: 'UX Strategy',
-    image: 'https://cdn.pixabay.com/photo/2017/07/31/11/21/people-2557396_1280.jpg',
-    alt: 'Team reviewing product work together',
-    shape: 'square',
-  },
-  {
-    title: 'Frontend Handoff',
-    category: 'Build Ready',
-    image: 'https://cdn.pixabay.com/photo/2016/11/23/14/45/coding-1853305_1280.jpg',
-    alt: 'Code editor representing frontend handoff',
-    shape: 'wide',
-  },
-]
-
 export function VisualArchive() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const viewportRef = useRef<HTMLDivElement>(null)
-  const railRef = useRef<HTMLDivElement>(null)
-  const progressRef = useRef(0)
-  const scrollDistanceRef = useRef(0)
-  const lastTouchYRef = useRef<number | null>(null)
-  const edgeReleaseRef = useRef<'start' | 'end' | null>(null)
-  const [scrollDistance, setScrollDistance] = useState(0)
-  const x = useMotionValue(0)
-  const smoothX = useSpring(x, { stiffness: 170, damping: 28, mass: 0.75 })
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const railRef = useRef<HTMLDivElement | null>(null);
 
-  const setArchiveProgress = useCallback((value: number) => {
-    const max = scrollDistanceRef.current
-    const next = Math.min(max, Math.max(0, value))
+  const [translateX, setTranslateX] = useState(0);
+  const [maxTranslate, setMaxTranslate] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-    progressRef.current = next
-    if (next > 2 && next < max - 2) {
-      edgeReleaseRef.current = null
+  const calculateDimensions = useCallback(() => {
+    const section = sectionRef.current;
+    const rail = railRef.current;
+
+    if (!section || !rail) return;
+
+    if (window.innerWidth < 768) {
+      section.style.height = "auto";
+      setMaxTranslate(0);
+      return;
     }
-    x.set(-next)
-  }, [x])
+
+    const distance = Math.max(
+      0,
+      rail.scrollWidth - window.innerWidth
+    );
+
+    setMaxTranslate(distance);
+
+    /*
+     * Vertical distance available for the horizontal
+     * gallery movement.
+     */
+    section.style.height = `${
+      window.innerHeight + distance
+    }px`;
+  }, []);
 
   useEffect(() => {
-    const measureRail = () => {
-      const rail = railRef.current
-      const viewport = viewportRef.current
+    calculateDimensions();
 
-      if (!rail || !viewport) return
+    const resizeObserver = new ResizeObserver(() => {
+      calculateDimensions();
+    });
 
-      const nextDistance = Math.max(0, rail.scrollWidth - viewport.clientWidth)
-
-      scrollDistanceRef.current = nextDistance
-      setScrollDistance(nextDistance)
-      setArchiveProgress(progressRef.current)
+    if (railRef.current) {
+      resizeObserver.observe(railRef.current);
     }
 
-    measureRail()
-
-    const observer = new ResizeObserver(measureRail)
-
-    if (railRef.current) observer.observe(railRef.current)
-    if (viewportRef.current) observer.observe(viewportRef.current)
-
-    window.addEventListener('resize', measureRail)
+    window.addEventListener("resize", calculateDimensions);
 
     return () => {
-      observer.disconnect()
-      window.removeEventListener('resize', measureRail)
-    }
-  }, [setArchiveProgress])
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", calculateDimensions);
+    };
+  }, [calculateDimensions]);
 
   useEffect(() => {
-    const handleWheel = (event: WheelEvent) => {
-      const section = sectionRef.current
-      const max = scrollDistanceRef.current
+    let ticking = false;
 
-      if (!section || max <= 0) return
+    const update = () => {
+      const section = sectionRef.current;
 
-      const rect = section.getBoundingClientRect()
-      const viewportHeight = window.innerHeight
-      const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY
-
-      if (delta === 0) return
-
-      const isLockedAtViewport = rect.top <= viewportHeight * 0.08 && rect.bottom >= viewportHeight * 0.72
-      const current = progressRef.current
-      const isMovingForward = delta > 0
-      const isAtEnd = current >= max - 1
-      const isAtStart = current <= 1
-      const needsEndBuffer = isMovingForward && isAtEnd && edgeReleaseRef.current !== 'end'
-      const needsStartBuffer = !isMovingForward && isAtStart && edgeReleaseRef.current !== 'start'
-      const shouldLock =
-        isLockedAtViewport &&
-        ((isMovingForward && current < max) ||
-          (!isMovingForward && current > 0) ||
-          needsEndBuffer ||
-          needsStartBuffer)
-
-      if (!shouldLock) return
-
-      event.preventDefault()
-
-      if (needsEndBuffer || needsStartBuffer) {
-        edgeReleaseRef.current = needsEndBuffer ? 'end' : 'start'
-        return
+      if (!section || window.innerWidth < 768) {
+        ticking = false;
+        return;
       }
 
-      setArchiveProgress(current + delta * 1.18)
-    }
+      const rect = section.getBoundingClientRect();
 
-    window.addEventListener('wheel', handleWheel, { passive: false })
+      const scrolled = Math.max(0, -rect.top);
 
-    return () => window.removeEventListener('wheel', handleWheel)
-  }, [setArchiveProgress])
+      const available =
+        section.offsetHeight - window.innerHeight;
 
-  useEffect(() => {
-    const handleTouchStart = (event: TouchEvent) => {
-      lastTouchYRef.current = event.touches[0]?.clientY ?? null
-    }
+      const nextProgress =
+        available > 0
+          ? Math.min(1, Math.max(0, scrolled / available))
+          : 0;
 
-    const handleTouchMove = (event: TouchEvent) => {
-      const section = sectionRef.current
-      const max = scrollDistanceRef.current
-      const lastTouchY = lastTouchYRef.current
-      const currentTouchY = event.touches[0]?.clientY
+      const nextTranslate =
+        nextProgress * maxTranslate;
 
-      if (!section || max <= 0 || lastTouchY === null || currentTouchY === undefined) return
+      setProgress(nextProgress);
+      setTranslateX(nextTranslate);
 
-      const delta = lastTouchY - currentTouchY
-      const rect = section.getBoundingClientRect()
-      const viewportHeight = window.innerHeight
-      const isLockedAtViewport = rect.top <= viewportHeight * 0.08 && rect.bottom >= viewportHeight * 0.72
-      const current = progressRef.current
-      const isMovingForward = delta > 0
-      const isAtEnd = current >= max - 1
-      const isAtStart = current <= 1
-      const needsEndBuffer = isMovingForward && isAtEnd && edgeReleaseRef.current !== 'end'
-      const needsStartBuffer = !isMovingForward && isAtStart && edgeReleaseRef.current !== 'start'
-      const shouldLock =
-        isLockedAtViewport &&
-        ((isMovingForward && current < max) ||
-          (!isMovingForward && current > 0) ||
-          needsEndBuffer ||
-          needsStartBuffer)
+      /*
+       * Determine which card is visually dominant.
+       */
+      const nextIndex = Math.min(
+        visualWork.length - 1,
+        Math.round(
+          nextProgress * (visualWork.length - 1)
+        )
+      );
 
-      if (!shouldLock) {
-        lastTouchYRef.current = currentTouchY
-        return
+      setActiveIndex(nextIndex);
+
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
       }
+    };
 
-      event.preventDefault()
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
-      if (needsEndBuffer || needsStartBuffer) {
-        edgeReleaseRef.current = needsEndBuffer ? 'end' : 'start'
-        lastTouchYRef.current = currentTouchY
-        return
-      }
-
-      setArchiveProgress(current + delta * 1.18)
-      lastTouchYRef.current = currentTouchY
-    }
-
-    window.addEventListener('touchstart', handleTouchStart, { passive: true })
-    window.addEventListener('touchmove', handleTouchMove, { passive: false })
+    update();
 
     return () => {
-      window.removeEventListener('touchstart', handleTouchStart)
-      window.removeEventListener('touchmove', handleTouchMove)
-    }
-  }, [setArchiveProgress])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [maxTranslate]);
 
-  const scroll = (direction: 'left' | 'right') => {
-    const viewport = viewportRef.current
-    if (!viewport) return
+  const goToSlide = (index: number) => {
+    const section = sectionRef.current;
 
-    const step = viewport.clientWidth * 0.68
-    const next = direction === 'right' ? progressRef.current + step : progressRef.current - step
+    if (!section || window.innerWidth < 768) return;
 
-    setArchiveProgress(next)
-  }
+    const nextIndex = Math.max(
+      0,
+      Math.min(visualWork.length - 1, index)
+    );
+
+    const nextProgress =
+      nextIndex / (visualWork.length - 1);
+
+    const target =
+      section.offsetTop +
+      nextProgress *
+        (section.offsetHeight - window.innerHeight);
+
+    window.scrollTo({
+      top: target,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <section
       ref={sectionRef}
-      className="visual-archive"
-      data-has-horizontal-scroll={scrollDistance > 0}
-      aria-label="Visual archive of selected work"
+      className="visual-archive-section"
     >
       <div className="visual-archive-sticky">
-        <div className="visual-archive-header">
-          <p className="section-kicker justify-center">/ Visual Archive</p>
-          <h2>Selected visual work</h2>
-          <p>
+
+        {/* ================= HEADER ================= */}
+
+        <header className="mx-auto w-full max-w-[1540px] px-5 sm:px-6 lg:px-10 xl:px-14">
+          <p className="section-kicker">/ Visual Archive</p>
+          <h2 className="mt-4 max-w-xl text-3xl font-black tracking-tight text-ink sm:text-4xl md:text-5xl">
+            Selected <span className="accent-text">Visual Work</span>
+          </h2>
+          <p className="mt-5 max-w-lg text-base leading-7 text-ink/[0.68] sm:mt-6 sm:text-lg sm:leading-8">
             A fast browse through product screens, brand systems, campaign visuals, and interface ideas that show range even when they do not need a full case study.
           </p>
-        </div>
+        </header>
 
-        <div className="visual-archive-shell">
-          <div ref={viewportRef} className="visual-archive-viewport">
-            <motion.div
+
+        {/* ================= DESKTOP RAIL ================= */}
+
+        <div className="visual-archive-gallery">
+
+          <div className="visual-archive-viewport">
+
+            <div
               ref={railRef}
               className="visual-archive-rail"
-              style={{ x: smoothX }}
-              aria-label="Scroll-driven visual work gallery"
+              style={{
+                transform: `translate3d(-${translateX}px, 0, 0)`,
+              }}
             >
-              {archiveItems.map((item, index) => (
-                <figure key={item.title} className={`visual-archive-card visual-archive-card-${item.shape}`}>
+
+              {visualWork.map((item, index) => (
+                <figure
+                  key={item.number}
+                  className={[
+                    "visual-work-card",
+                    index === activeIndex
+                      ? "is-active"
+                      : "",
+                  ].join(" ")}
+                >
+
                   <Image
                     src={item.image}
                     alt={item.alt}
                     fill
-                    sizes={item.shape === 'hero' ? '(max-width: 768px) 84vw, 560px' : '(max-width: 768px) 78vw, 360px'}
-                    unoptimized
-                    priority={index === 0}
+                    priority={index < 3}
+                    sizes="(max-width: 768px) 88vw, 42vw"
+                    className="visual-work-image"
                   />
+
+                  <div className="visual-work-overlay" />
+
+                  {index === activeIndex && (
+                    <div className="visual-work-active-glow" />
+                  )}
+
+                  <button
+                    type="button"
+                    className="visual-work-arrow"
+                    aria-label={`View ${item.title}`}
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
+                    </svg>
+                  </button>
+
                   <figcaption>
-                    <span>{item.category}</span>
-                    <strong>{item.title}</strong>
+
+                    <div className="visual-work-meta">
+
+                      <span className="visual-work-category">
+                        {item.category}
+                      </span>
+
+                    </div>
+
+                    <strong>
+                      {item.title}
+                    </strong>
+
+                    <div className="visual-work-number">
+                      {item.number}
+                    </div>
+
+                    <div className="visual-work-card-line">
+                      <span
+                        style={{
+                          transform:
+                            index === activeIndex
+                              ? "scaleX(1)"
+                              : "scaleX(0)",
+                        }}
+                      />
+                    </div>
+
                   </figcaption>
+
                 </figure>
               ))}
-            </motion.div>
+
+            </div>
+
           </div>
 
-          <div className="visual-archive-controls" aria-label="Visual archive controls">
-            <button type="button" onClick={() => scroll('left')} aria-label="Scroll visual archive left">
-              <ArrowLeft size={18} />
-            </button>
-            <button type="button" onClick={() => scroll('right')} aria-label="Scroll visual archive right">
-              <ArrowRight size={18} />
-            </button>
+
+          {/* ================= CONTROLS ================= */}
+
+          <div className="visual-archive-controls">
+
+            <div className="visual-archive-progress">
+
+              <div className="visual-archive-counter">
+                <strong>
+                  {String(activeIndex + 1).padStart(2, "0")}
+                </strong>
+
+                <span>/</span>
+
+                <span>
+                  {String(visualWork.length).padStart(2, "0")}
+                </span>
+              </div>
+
+              <div className="visual-archive-progress-track">
+                <span
+                  style={{
+                    width: `${Math.max(
+                      4,
+                      progress * 100
+                    )}%`,
+                  }}
+                />
+              </div>
+
+            </div>
+
+
+            <div className="visual-archive-drag">
+
+              <span />
+              <span className="drag-icon">✦</span>
+              <span>Drag to explore</span>
+              <span />
+              
+            </div>
+
+
+            <div className="visual-archive-arrows">
+
+              <button
+                type="button"
+                onClick={() =>
+                  goToSlide(activeIndex - 1)
+                }
+                disabled={activeIndex === 0}
+                aria-label="Previous visual work"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <path d="m12 19-7-7 7-7" />
+                  <path d="M19 12H5" />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  goToSlide(activeIndex + 1)
+                }
+                disabled={
+                  activeIndex === visualWork.length - 1
+                }
+                aria-label="Next visual work"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </button>
+
+            </div>
+
           </div>
+
         </div>
+
+
+        {/* ================= CAPABILITIES ================= */}
+
+        <div className="visual-archive-capabilities">
+
+          {capabilities.map((item) => (
+            <div
+              key={item.title}
+              className="visual-capability"
+            >
+
+              <div className="visual-capability-icon">
+                <CapabilityIcon type={item.icon} />
+              </div>
+
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+
+
+        {/* ================= MOBILE ================= */}
+
+        <div className="visual-archive-mobile">
+
+          <div className="visual-archive-mobile-track">
+
+            {visualWork.map((item) => (
+              <figure
+                key={item.number}
+                className="visual-mobile-card"
+              >
+
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  sizes="88vw"
+                  className="visual-work-image"
+                />
+
+                <div className="visual-work-overlay" />
+
+                <figcaption>
+
+                  <span className="visual-work-category">
+                    {item.category}
+                  </span>
+
+                  <strong>
+                    {item.title}
+                  </strong>
+
+                  <small>
+                    {item.number} / 07
+                  </small>
+
+                </figcaption>
+
+              </figure>
+            ))}
+
+          </div>
+
+        </div>
+
       </div>
     </section>
-  )
+  );
 }
