@@ -45,6 +45,16 @@
   }
 }
 
+/* Screen viewing: filter out non-financial sections when in financial-only preview */
+.quote-doc.view-finance-only #summary,
+.quote-doc.view-finance-only #scope,
+.quote-doc.view-finance-only #deliverables,
+.quote-doc.view-finance-only #timeline,
+.quote-doc.view-finance-only #client-to-provide,
+.quote-doc.view-finance-only #assumptions {
+  display: none !important;
+}
+
 /* Standard A4 with calibrated margins for clean print flow without empty space */
 @page {
   size: A4;
@@ -548,5 +558,115 @@
   .quote-doc #acceptance .mt-8 {
     margin-top: 6px !important;
     padding: 5px 8px !important;
+  }
+
+  /* ==========================================================================
+     FINANCIAL QUOTE ONLY (1-PAGE MODE)
+     Triggered when user selects "Financial Quote" in export options.
+     Hides narrative/editorial sections, leaving pure commercial quote.
+     ========================================================================== */
+  .quote-doc.print-finance-only #summary,
+  .quote-doc.print-finance-only #scope,
+  .quote-doc.print-finance-only #deliverables,
+  .quote-doc.print-finance-only #timeline,
+  .quote-doc.print-finance-only #client-to-provide,
+  .quote-doc.print-finance-only #assumptions,
+  .quote-doc[data-print-mode="finance"] #summary,
+  .quote-doc[data-print-mode="finance"] #scope,
+  .quote-doc[data-print-mode="finance"] #deliverables,
+  .quote-doc[data-print-mode="finance"] #timeline,
+  .quote-doc[data-print-mode="finance"] #client-to-provide,
+  .quote-doc[data-print-mode="finance"] #assumptions {
+    display: none !important;
+  }
+
+  /* In financial quote mode, ignore any page-break dividers */
+  .quote-doc.print-finance-only .page-break,
+  .quote-doc[data-print-mode="finance"] .page-break {
+    break-before: auto !important;
+    page-break-before: auto !important;
+  }
+
+  /* Compact header in financial quote mode */
+  .quote-doc.print-finance-only #top > header,
+  .quote-doc[data-print-mode="finance"] #top > header {
+    padding: 10px 14px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .quote-doc.print-finance-only #top h1,
+  .quote-doc[data-print-mode="finance"] #top h1 {
+    font-size: 22pt !important;
+  }
+
+  .quote-doc.print-finance-only #top header .mt-8,
+  .quote-doc[data-print-mode="finance"] #top header .mt-8 {
+    display: none !important;
+  }
+
+  /* Commercials in 1-page mode */
+  .quote-doc.print-finance-only #commercials,
+  .quote-doc[data-print-mode="finance"] #commercials {
+    padding-top: 2.5mm !important;
+  }
+
+  .quote-doc.print-finance-only #commercials > div:first-child,
+  .quote-doc[data-print-mode="finance"] #commercials > div:first-child {
+    margin-bottom: 3px !important;
+    padding-top: 2px !important;
+  }
+
+  .quote-doc.print-finance-only #commercials h2,
+  .quote-doc[data-print-mode="finance"] #commercials h2 {
+    font-size: 13pt !important;
+  }
+
+  .quote-doc.print-finance-only #commercials h3,
+  .quote-doc[data-print-mode="finance"] #commercials h3 {
+    font-size: 8.5pt !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .quote-doc.print-finance-only table td,
+  .quote-doc.print-finance-only .quote-thead th,
+  .quote-doc[data-print-mode="finance"] table td,
+  .quote-doc[data-print-mode="finance"] .quote-thead th {
+    padding: 3.5px 7px !important;
+    font-size: 7.2pt !important;
+  }
+
+  /* Acceptance in 1-page mode */
+  .quote-doc.print-finance-only #acceptance,
+  .quote-doc[data-print-mode="finance"] #acceptance {
+    padding-top: 2.5mm !important;
+  }
+
+  .quote-doc.print-finance-only #acceptance > div:first-child,
+  .quote-doc[data-print-mode="finance"] #acceptance > div:first-child {
+    margin-bottom: 3px !important;
+    padding-top: 2px !important;
+  }
+
+  .quote-doc.print-finance-only #acceptance h2,
+  .quote-doc[data-print-mode="finance"] #acceptance h2 {
+    font-size: 13pt !important;
+  }
+
+  .quote-doc.print-finance-only .quote-acceptance-grid article,
+  .quote-doc[data-print-mode="finance"] .quote-acceptance-grid article {
+    padding: 7px 11px !important;
+  }
+
+  .quote-doc.print-finance-only .quote-acceptance-grid dl,
+  .quote-doc[data-print-mode="finance"] .quote-acceptance-grid dl {
+    margin-top: 4px !important;
+    gap: 2px !important;
+  }
+
+  .quote-doc.print-finance-only .quote-acceptance-grid dl > div,
+  .quote-doc[data-print-mode="finance"] .quote-acceptance-grid dl > div {
+    margin-top: 3px !important;
+    padding-bottom: 1.5px !important;
   }
 }

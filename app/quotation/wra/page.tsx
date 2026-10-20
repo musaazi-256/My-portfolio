@@ -29,10 +29,18 @@ const pricingTotal = pricing.reduce((sum, row) => sum + row.amount, 0)
 const maxGrowth = Math.max(...growth.map((point) => point.value))
 const card = 'rounded-3xl border border-black/10 bg-white/35 p-6 shadow-soft backdrop-blur-xl sm:p-7'
 
-export default function WraQuotationPage() {
+export default async function WraQuotationPage(props: {
+  searchParams?: Promise<{ mode?: string }>
+}) {
+  const searchParams = props.searchParams ? await props.searchParams : undefined
+  const isFinance = searchParams?.mode === 'finance'
+
   return (
-    <main className="quote-doc bg-paper text-ink">
-      <QuoteNav title="WRA Quotation" sections={sections} />
+    <main
+      className={`quote-doc bg-paper text-ink ${isFinance ? 'print-finance-only view-finance-only' : ''}`}
+      data-print-mode={isFinance ? 'finance' : 'full'}
+    >
+      <QuoteNav title="WRA Quotation" sections={sections} initialMode={isFinance ? 'finance' : 'all'} />
 
       <div id="top" className="mx-auto max-w-6xl px-5 py-8 sm:px-6 lg:px-8">
         <header className="rounded-[2rem] border border-black/10 bg-white/35 p-6 shadow-soft backdrop-blur-xl sm:p-10 lg:p-12">
