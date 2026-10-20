@@ -31,7 +31,7 @@ export function FeaturedWork() {
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M4 4l16 16M4 20L20 4" />
                     </svg>
-                    <span className="text-[10px] font-black uppercase tracking-[0.15em]">
+                    <span className="text-[11px] font-black uppercase tracking-[0.15em]">
                       Featured Case Study
                     </span>
                   </div>
@@ -40,7 +40,7 @@ export function FeaturedWork() {
                   </span>
                 </div>
 
-                <span className="mb-6 inline-block rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                <span className="mb-6 inline-block rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white">
                   Product Design
                 </span>
 
@@ -113,7 +113,7 @@ export function FeaturedWork() {
               <div className="flex flex-col justify-center p-8 sm:p-10">
                 <div className="mb-6 flex items-center gap-4">
                   <span className="text-xs font-bold text-black/30">02</span>
-                  <span className="rounded-full border border-black/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-black/60">
+                  <span className="rounded-full border border-black/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-black/60">
                     Mobile App
                   </span>
                 </div>
@@ -130,7 +130,7 @@ export function FeaturedWork() {
 
                 <Link
                   href="/projects/dondolo-hotspot-manager"
-                  className="mt-8 flex items-center gap-2 text-sm font-bold text-black transition-all hover:gap-3"
+                  className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-black transition-all hover:gap-3"
                 >
                   Explore Project
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -150,7 +150,7 @@ export function FeaturedWork() {
               <div className="flex flex-col justify-center p-8 sm:p-10 order-2 lg:order-1">
                 <div className="mb-6 flex items-center gap-4">
                   <span className="text-xs font-bold text-white/30">03</span>
-                  <span className="rounded-full border border-white/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#ff7600]">
+                  <span className="rounded-full border border-white/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#ff7600]">
                     Fintech
                   </span>
                 </div>
@@ -167,7 +167,7 @@ export function FeaturedWork() {
 
                 <Link
                   href="/projects/safeboda-crypto-hackathon"
-                  className="mt-8 flex items-center gap-2 text-sm font-bold text-[#ff7600] transition-all hover:gap-3"
+                  className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#ff7600] transition-all hover:gap-3"
                 >
                   Explore Project
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -198,7 +198,7 @@ export function FeaturedWork() {
             <div className="p-8 sm:p-12 lg:p-14">
               <div className="mb-6 flex items-center gap-4">
                 <span className="text-xs font-bold text-black/30">04</span>
-                <span className="rounded-full border border-black/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-black/60">
+                <span className="rounded-full border border-black/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-black/60">
                   Mobility
                 </span>
               </div>
@@ -216,7 +216,7 @@ export function FeaturedWork() {
 
               <Link
                 href="/projects/union-driver-experience"
-                className="mt-8 flex items-center gap-2 text-sm font-bold text-black transition-all hover:gap-3"
+                className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-black transition-all hover:gap-3"
               >
                 Explore Project
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

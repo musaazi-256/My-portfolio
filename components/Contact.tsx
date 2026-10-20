@@ -4,10 +4,10 @@ import { CONTACT } from '@/data/constants'
 export function Contact() {
   return (
     <section id="contact" className="section">
-      <div className="relative overflow-hidden rounded-[1.5rem] bg-[#0e1116] p-8 sm:p-10 lg:p-14 border border-white/5 shadow-2xl">
+      <div className="relative overflow-hidden rounded-[1.5rem] bg-[#0e1116] p-5 min-[380px]:p-8 sm:p-10 lg:p-14 border border-white/5 shadow-2xl">
         <div className="absolute right-0 top-0 h-[400px] w-[400px] rounded-full bg-[#ff7600]/15 blur-[100px]" />
         
-        <div className="relative grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+        <div className="relative grid gap-12 [&>*]:min-w-0 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
           
           {/* Left Column */}
           <div className="flex flex-col">
@@ -16,7 +16,7 @@ export function Contact() {
               <div className="mt-2 h-[2px] w-6 bg-[#ff7600]"></div>
             </div>
             
-            <h2 className="mt-4 text-[2.75rem] sm:text-[3.5rem] lg:text-[4rem] font-black leading-[1.05] tracking-tight text-white">
+            <h2 className="mt-4 text-[2.25rem] min-[380px]:text-[2.75rem] sm:text-[3.5rem] lg:text-[4rem] font-black leading-[1.05] tracking-tight text-white">
               Have a product idea or an experience that <span className="text-[#ff7600]">needs fixing?</span>
             </h2>
             
@@ -94,8 +94,8 @@ export function Contact() {
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/70">
                   <Mail size={16} />
                 </div>
-                <div>
-                  <p className="text-[13px] font-bold text-white">{CONTACT.email}</p>
+                <div className="min-w-0">
+                  <p className="break-all text-[13px] font-bold text-white">{CONTACT.email}</p>
                   <p className="text-[12px] text-white/40">Email</p>
                 </div>
               </div>
@@ -112,7 +112,7 @@ export function Contact() {
           </div>
 
           {/* Right Column */}
-          <div className="flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-8 sm:p-10">
+          <div className="flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-6 min-[380px]:p-8 sm:p-10">
             <div>
               <div className="relative mb-8 flex h-16 w-16 items-center justify-center rounded-full border border-dashed border-[#ff7600]/40">
                 <div className="absolute top-0 right-0 h-1.5 w-1.5 rounded-full bg-[#ff7600]"></div>
@@ -160,10 +160,10 @@ export function Contact() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 flex flex-col items-start justify-between gap-6 rounded-2xl bg-white/5 p-6 sm:flex-row sm:items-center sm:p-8">
+        <div className="mt-8 flex flex-col items-start justify-between gap-6 rounded-2xl bg-white/5 p-5 min-[380px]:p-6 sm:flex-row sm:items-center sm:p-8">
           <div className="flex items-center gap-4">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center text-[#ff7600]">
-              <svg viewBox="0 0 24 24" className="h-8 w-8 fill-currentColor"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5L12 0z"/></svg>
+              <svg viewBox="0 0 24 24" className="h-8 w-8 fill-current"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5L12 0z"/></svg>
             </div>
             <div>
               <p className="text-[14px] font-bold text-white">Great products start with a conversation.</p>

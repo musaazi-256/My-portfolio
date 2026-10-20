@@ -60,13 +60,14 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   background: #EDEDED;
   color: #2B2D30;
-  overflow-x: hidden;
+  overflow-x: clip;
   font-family: var(--font-outfit), system-ui, -apple-system, sans-serif;
 }
 
@@ -336,22 +337,48 @@ a {
   @apply text-brand;
 }
 
-.trusted-logo-row {
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
+/* Estimator slider: thin visual track, 44px touch area */
+.estimate-range {
+  height: 2.75rem;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
 }
 
-.trusted-logo-row::-webkit-scrollbar {
-  display: none;
+.estimate-range::-webkit-slider-runnable-track {
+  height: 0.375rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.trusted-logo-item {
-  min-width: 3.65rem;
+.estimate-range::-moz-range-track {
+  height: 0.375rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.trusted-logo {
-  max-height: 1.05rem;
-  max-width: 4.45rem;
+.estimate-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: -0.4375rem;
+  border: 3px solid #0e1116;
+  border-radius: 999px;
+  background: #ff7600;
+}
+
+.estimate-range::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 3px solid #0e1116;
+  border-radius: 999px;
+  background: #ff7600;
+}
+
+.estimate-range:focus-visible {
+  outline: 2px solid #ff7600;
+  outline-offset: 2px;
+  border-radius: 999px;
 }
 
 /* =========================================================
@@ -634,7 +661,7 @@ a {
 
   color: #080808;
 
-  font-size: 0.57rem;
+  font-size: 0.6875rem;
 
   font-weight: 900;
 
@@ -990,9 +1017,9 @@ a {
 
   margin: 0;
 
-  color: rgba(5, 5, 5, 0.48);
+  color: rgba(5, 5, 5, 0.6);
 
-  font-size: 0.65rem;
+  font-size: 0.75rem;
 
   line-height: 1.45;
 }
@@ -1171,9 +1198,9 @@ a {
   .visual-mobile-card small {
     margin-top: 0.8rem;
 
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.65);
 
-    font-size: 0.65rem;
+    font-size: 0.75rem;
 
     font-weight: 700;
   }
@@ -1395,9 +1422,9 @@ a {
 @media (max-width: 1023px) {
   .service-stack-card {
     top: var(--mobile-top) !important;
-    width: calc(100% - var(--mobile-width-cut)) !important;
+    width: 100% !important;
     min-height: 330px;
-    margin-left: var(--mobile-offset) !important;
+    margin-left: 0 !important;
     margin-bottom: 2.5rem;
     padding: 2rem;
   }

@@ -26,9 +26,6 @@
     "paths": {
       "@/*": [
         "./*"
-      ],
-      "@prototype/*": [
-        "./prototype-src/*"
       ]
     }
   },

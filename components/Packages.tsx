@@ -97,7 +97,7 @@ export function Packages() {
                 key={item}
                 type="button"
                 onClick={() => setCurrency(item)}
-                className={`rounded-full px-6 py-2 text-sm font-bold transition-all ${currency === item ? 'bg-white text-ink shadow-sm' : 'text-ink/50 hover:text-ink'}`}
+                className={`min-h-11 rounded-full px-6 py-2 text-sm font-bold transition-all ${currency === item ? 'bg-white text-ink shadow-sm' : 'text-ink/50 hover:text-ink'}`}
                 aria-pressed={currency === item}
               >
                 {item}
@@ -108,7 +108,7 @@ export function Packages() {
 
         <div ref={plansRef} className="relative mt-12 grid gap-6 sm:mt-16 lg:grid-cols-3 lg:items-center">
           {/* Ambient Orange Glow Behind Center Card */}
-          <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff7600]/15 blur-[100px]" />
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[min(600px,100%)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff7600]/15 blur-[100px]" />
           
           {basePlans.map((item, index) => {
             const isFeatured = index === 1;
@@ -195,10 +195,10 @@ export function Packages() {
         </div>
 
         <div className="mx-auto mt-20 max-w-[1040px] overflow-hidden rounded-[2.5rem] bg-[#0e1116] text-white shadow-2xl ring-1 ring-white/5">
-          <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="grid [&>*]:min-w-0 lg:grid-cols-[1.1fr_0.9fr]">
             
             {/* LEFT COLUMN: Scope Adjuster */}
-            <div className="p-8 sm:p-12 lg:pr-10">
+            <div className="p-5 min-[380px]:p-8 sm:p-12 lg:pr-10">
               
               {/* Header */}
               <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-[#ff7600]">
@@ -234,7 +234,8 @@ export function Packages() {
                     max="20"
                     value={screens}
                     onChange={(event) => setScreens(Number(event.target.value))}
-                    className="w-full accent-[#ff7600] h-1.5 bg-white/10 rounded-full appearance-none cursor-pointer"
+                    aria-label="Core screens"
+                    className="estimate-range w-full cursor-pointer"
                   />
                   <div className="mt-3 flex justify-between text-[12px] font-semibold text-white/40">
                     <span>8 included</span>
@@ -267,7 +268,7 @@ export function Packages() {
                           <div className="flex flex-wrap items-center gap-2">
                             <span className="text-[14px] font-semibold text-white/90">{item.label}</span>
                             {idx === 0 && (
-                              <span className="rounded-[4px] bg-[#ff7600]/15 px-1.5 py-0.5 text-[10px] font-bold text-[#ff7600]">Recommended</span>
+                              <span className="rounded-[4px] bg-[#ff7600]/15 px-1.5 py-0.5 text-[11px] font-bold text-[#ff7600]">Recommended</span>
                             )}
                           </div>
                           <p className="mt-1 text-[12px] text-white/40">
@@ -288,7 +289,7 @@ export function Packages() {
             </div>
             
             {/* RIGHT COLUMN: Cost Breakdown & Total */}
-            <div className="bg-[#111827] p-8 sm:p-12 lg:pl-10 relative border-l border-white/[0.05]">
+            <div className="bg-[#111827] p-5 min-[380px]:p-8 sm:p-12 lg:pl-10 relative border-l border-white/[0.05]">
               <div className="flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.2em] text-white/60">
                 <PieChart size={18} className="text-[#ff7600]" />
                 <span>Project Cost Breakdown</span>

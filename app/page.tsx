@@ -1,6 +1,7 @@
 import { Contact } from '@/components/Contact'
 import { Experience } from '@/components/Experience'
 import { FeaturedWork } from '@/components/FeaturedWork'
+import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { Packages } from '@/components/Packages'
@@ -12,19 +13,22 @@ import { VisualArchive } from '@/components/VisualArchive'
 
 export default function Home() {
   return (
-    <main>
-      <Header />
-      <Hero />
-      <TrustedBy />
-      <VisualArchive />
-      <FeaturedWork />
-      <Services />
-      <Process />
-      <Packages />
-      <Experience />
-      <ScrollRevealText />
-      <Contact />
-    </main>
+    <>
+      <main>
+        <Header />
+        <Hero />
+        <TrustedBy />
+        <VisualArchive />
+        <FeaturedWork />
+        <Services />
+        <Process />
+        <Packages />
+        <Experience />
+        <ScrollRevealText />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   )
 }
 

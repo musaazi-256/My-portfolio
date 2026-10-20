@@ -117,7 +117,7 @@ export function Experience() {
                 </div>
                 <div className="hidden items-center gap-2 md:flex">
                   <div className="h-1.5 w-1.5 rounded-full bg-[#ff7600]"></div>
-                  <span className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[#888]">
+                  <span className="text-[0.6875rem] font-black uppercase tracking-[0.2em] text-[#888]">
                     {item.brandLabel}
                   </span>
                 </div>
@@ -132,7 +132,7 @@ export function Experience() {
                     <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#ff7600]/20 text-[#ff7600]">
                       {item.company.includes('Loadmaster') ? <Truck size={12} strokeWidth={2.5} /> : <Box size={12} strokeWidth={2.5} />}
                     </div>
-                    <p className="m-0 text-[0.65rem] font-extrabold uppercase tracking-[0.15em] text-[#ff7600] sm:text-[0.7rem]">
+                    <p className="m-0 text-[0.6875rem] font-extrabold uppercase tracking-[0.15em] text-[#ff7600] sm:text-[0.7rem]">
                       {item.kicker}
                     </p>
                   </div>

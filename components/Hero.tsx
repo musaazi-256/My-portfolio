@@ -17,7 +17,7 @@ export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden mx-auto max-w-[1540px] px-5 pb-16 pt-12 sm:px-6 sm:pt-16 lg:px-10 xl:px-14">
       {/* Top Main Section */}
-      <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(400px,1fr)] lg:gap-14 xl:grid-cols-[minmax(0,1.1fr)_minmax(500px,1fr)]">
+      <div className="grid items-center gap-10 [&>*]:min-w-0 lg:grid-cols-[minmax(0,1.1fr)_minmax(400px,1fr)] lg:gap-14 xl:grid-cols-[minmax(0,1.1fr)_minmax(500px,1fr)]">
         
         {/* Left Column - Content */}
         <div className="max-w-4xl text-center lg:text-left z-10">
@@ -40,8 +40,6 @@ export function Hero() {
             usable digital products – from research and wireframes to 
             polished interfaces and developer-ready prototypes.
           </p>
-
-          <HeroPortrait className="mt-10 lg:hidden" />
 
           {/* Buttons */}
           <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start lg:gap-4 font-semibold text-sm">
@@ -67,6 +65,8 @@ export function Hero() {
             </button>
           </div>
 
+          <HeroPortrait className="mt-10 lg:hidden" />
+
           {/* Rating */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-[13px] text-ink/60 lg:justify-start">
             <div className="flex gap-[2px] text-[#ff7600]">
@@ -77,36 +77,36 @@ export function Hero() {
           </div>
 
           {/* Unified Stats Card */}
-          <div className="mx-auto mt-8 flex max-w-fit flex-nowrap items-center justify-between gap-4 rounded-2xl border border-white/50 bg-white/70 px-6 py-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md lg:mx-0 lg:gap-6 lg:px-8 lg:py-5">
+          <div className="mx-auto mt-8 flex w-full max-w-fit flex-nowrap items-center justify-between gap-2 rounded-2xl border border-white/50 bg-white/70 px-3 py-4 min-[380px]:gap-3 min-[380px]:px-4 sm:gap-4 sm:px-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md lg:mx-0 lg:gap-6 lg:px-8 lg:py-5">
             
             {/* Stat 1 */}
-            <div className="flex items-center gap-3">
-              <div className="text-[#ff7600]"><Calendar size={24} strokeWidth={1.5} /></div>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="hidden text-[#ff7600] min-[360px]:block"><Calendar size={24} strokeWidth={1.5} /></div>
               <div className="flex flex-col text-left">
                 <span className="text-xl font-black leading-none text-ink lg:text-2xl">7+</span>
-                <span className="text-[10px] font-semibold leading-tight text-ink/50 lg:text-xs">Years<br/>Experience</span>
+                <span className="text-[11px] font-semibold leading-tight text-ink/50 lg:text-xs">Years<br/>Experience</span>
               </div>
             </div>
 
             <div className="h-10 w-[1px] bg-ink/10"></div>
 
             {/* Stat 2 */}
-            <div className="flex items-center gap-3">
-              <div className="text-[#ff7600]"><Briefcase size={24} strokeWidth={1.5} /></div>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="hidden text-[#ff7600] min-[360px]:block"><Briefcase size={24} strokeWidth={1.5} /></div>
               <div className="flex flex-col text-left">
                 <span className="text-xl font-black leading-none text-ink lg:text-2xl">20+</span>
-                <span className="text-[10px] font-semibold leading-tight text-ink/50 lg:text-xs">Projects<br/>Delivered</span>
+                <span className="text-[11px] font-semibold leading-tight text-ink/50 lg:text-xs">Projects<br/>Delivered</span>
               </div>
             </div>
 
             <div className="h-10 w-[1px] bg-ink/10"></div>
 
             {/* Stat 3 */}
-            <div className="flex items-center gap-3">
-              <div className="text-[#ff7600]"><Award size={24} strokeWidth={1.5} /></div>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="hidden text-[#ff7600] min-[360px]:block"><Award size={24} strokeWidth={1.5} /></div>
               <div className="flex flex-col text-left">
                 <span className="text-xl font-black leading-none text-ink lg:text-2xl">4+</span>
-                <span className="text-[10px] font-semibold leading-tight text-ink/50 lg:text-xs">Case<br/>Studies</span>
+                <span className="text-[11px] font-semibold leading-tight text-ink/50 lg:text-xs">Case<br/>Studies</span>
               </div>
             </div>
 
@@ -122,7 +122,7 @@ export function Hero() {
               </svg>
               <div className="flex flex-col text-left">
                 <span className="text-[13px] font-black leading-tight text-ink lg:text-[15px]">Google UX</span>
-                <span className="text-[10px] font-semibold leading-tight text-ink/50 lg:text-[11px]">Certification</span>
+                <span className="text-[11px] font-semibold leading-tight text-ink/50">Certification</span>
               </div>
             </div>
 
@@ -157,7 +157,7 @@ function HeroPortrait({ className = '' }: { className?: string }) {
       
       {/* Light Frosted Glass Card */}
       <div className="absolute bottom-4 left-0 sm:-left-4 lg:-left-12 z-20 w-[90%] sm:w-[80%] lg:w-[320px] rounded-2xl border border-white/60 bg-white/70 px-6 py-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] backdrop-blur-xl">
-        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-ink/70">Product Designer</p>
+        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-ink/70">Product Designer</p>
         <p className="mt-1 text-2xl font-black tracking-tight text-ink">Musaazi Ignatius</p>
         <div className="mt-3 flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-[#10b981] shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>

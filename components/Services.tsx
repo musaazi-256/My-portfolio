@@ -61,9 +61,7 @@ export function Services() {
                 zIndex: index + 1,
                 marginLeft: `${[-34, 18, -16, 30, -26, 10][index]}px`,
                 width: `calc(100% - ${[0, 22, 10, 28, 16, 6][index]}px)`,
-                ['--mobile-top' as string]: `${52 + index * 8}px`,
-                ['--mobile-offset' as string]: `${[-8, 6, -5, 9, -7, 4][index]}px`,
-                ['--mobile-width-cut' as string]: `${[0, 8, 5, 10, 7, 4][index]}px`
+                ['--mobile-top' as string]: `${52 + index * 8}px`
               }}
             >
               <p className="section-kicker">{service.eyebrow}</p>
@@ -71,7 +69,7 @@ export function Services() {
                 {String(index + 1).padStart(2, '0')}. {service.title}
               </h3>
               <p className="mt-5 max-w-md text-base leading-8 text-ink/[0.68]">{service.description}</p>
-              <ul className="mt-7 grid gap-2 pl-6 text-sm leading-6 text-ink/40">
+              <ul className="mt-7 grid gap-2 pl-6 text-sm leading-6 text-ink/60">
                 {service.tools.map((tool) => <li key={tool}>{tool}</li>)}
               </ul>
             </article>

@@ -13,7 +13,7 @@ const steps = [
       <div className="flex h-full w-full items-center justify-center gap-4 p-4">
         {/* Left Card */}
         <div className="flex h-full flex-1 flex-col justify-center rounded-xl border border-black/5 bg-white p-4 shadow-sm">
-          <p className="mb-2 text-[10px] font-bold uppercase text-ink/40">Goal</p>
+          <p className="mb-2 text-[11px] font-bold uppercase text-ink/40">Goal</p>
           <div className="flex items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#ff7600] text-[#ff7600]">
               <div className="h-2 w-2 rounded-full bg-[#ff7600]" />
@@ -26,7 +26,7 @@ const steps = [
         </div>
         {/* Right Card */}
         <div className="flex h-full flex-1 flex-col justify-center rounded-xl border border-black/5 bg-white p-4 shadow-sm">
-          <p className="mb-2 text-[10px] font-bold uppercase text-ink/40">Audience</p>
+          <p className="mb-2 text-[11px] font-bold uppercase text-ink/40">Audience</p>
           <div className="flex items-end justify-center gap-1">
             <div className="h-6 w-5 rounded-t-md bg-black/10" />
             <div className="h-8 w-6 rounded-t-md bg-[#ff7600]/20" />
@@ -264,7 +264,7 @@ export function Process() {
                 
                 {/* Horizontal Divider (skip last) */}
                 {idx !== steps.length - 1 && (
-                  <div className="w-full h-px bg-black/[0.04] ml-12 sm:ml-24" />
+                  <div className="h-px bg-black/[0.04] ml-12 sm:ml-24" />
                 )}
               </React.Fragment>
             ))}
