@@ -2,7 +2,7 @@ export const QUOTE = {
   number: 'WRA-Q-2026-001',
   date: '20 October 2026',
   validity: 'Valid for 30 days',
-  total: 1000000,
+  total: 2150000,
   timeline: '2 weeks from kickoff and receipt of all content',
   from: {
     name: 'Musaazi Ignatius (Iggy)',
@@ -145,6 +145,15 @@ export const pricing = [
   { item: 'Revisions, proofing & final file preparation', amount: 150000 },
 ]
 
+export const printing = {
+  item: 'A5 magazine / book printing',
+  rate: 23000,
+  quantity: 50,
+  total: 50 * 23000,
+  unit: 'per copy',
+  note: '50 A5 copies at UGX 23,000 each. Printing total: UGX 1,150,000.',
+} as const
+
 export const payments = [
   { stage: 'Deposit to start work (50%)', share: '50%', amount: 500000, timing: 'Due before commencement' },
   { stage: 'Delivery of final files (50%)', share: '50%', amount: 500000, timing: 'Due on delivery of final files' },
@@ -162,7 +171,7 @@ export const clientToProvide = [
 export const assumptions = [
   'Content is mostly final when work starts. Major rewrites are out of scope.',
   'Includes 2 revision rounds. Extra rounds are billed separately.',
-  'Printing costs, photography and stock images are not included.',
+  'Printing is charged separately at UGX 23,000 per A5 copy. Photography and stock images are not included.',
   'The timeline begins when the deposit and full content are received. Late content moves the delivery date.',
 ]
 
