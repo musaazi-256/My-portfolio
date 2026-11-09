@@ -14,7 +14,7 @@
 .quote-doc .quotation-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #737579; margin-bottom: 8px; font-weight: 700; }
 .quote-doc .quotation-parties h2 { font-size: 15px; font-weight: 700; margin-bottom: 5px; }
 .quote-doc .quotation-parties p:not(.quotation-label) { font-size: 12px; color: #626366; }
-.quote-doc .quotation-section { margin-top: 26px; scroll-margin-top: 150px; }
+.quote-doc .quotation-section { margin-top: 26px; scroll-margin-top: 210px; }
 .quote-doc .quotation-section > h2 { font-size: 15px; font-weight: 800; padding-bottom: 10px; margin-bottom: 14px; border-bottom: 1px solid #dedfe0; }
 .quote-doc .quotation-section p, .quote-doc .quotation-section li { font-size: 13px; line-height: 1.7; color: #55575a; }
 .quote-doc .quotation-section h3 { font-size: 12px; font-weight: 750; margin-bottom: 6px; }
@@ -25,8 +25,7 @@
 .quote-doc .quotation-items td { padding: 13px 12px; border-bottom: 1px solid #e5e5e5; }
 .quote-doc .quotation-items th:not(:first-child), .quote-doc .quotation-items td:not(:first-child) { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .quote-doc .quotation-items th:first-child { width: 56%; }
-.quote-doc .printing-row { background: #faf5ef; }
-.quote-doc .printing-row span { display: block; font-size: 11px; color: #707174; margin-top: 3px; }
+.quote-doc .item-note { display: block; font-size: 11px; color: #707174; margin-top: 3px; font-weight: 400; }
 .quote-doc .quotation-totals { display: flex; justify-content: flex-end; margin-top: 16px; }
 .quote-doc .quotation-totals dl { width: 380px; max-width: 100%; }
 .quote-doc .quotation-totals dl > div { display: flex; justify-content: space-between; gap: 16px; padding: 7px 12px; font-size: 12px; }
@@ -123,7 +122,7 @@
   .quote-doc .quote-toolbar-sections { padding: 0 16px; gap: 12px; }
   .quote-doc .quote-jump-label { display: none; }
   .quote-doc .quote-section-links { gap: 20px; }
-  .quote-doc .quotation-section { scroll-margin-top: 190px; }
+  .quote-doc .quotation-section { scroll-margin-top: 250px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .quote-doc { scroll-behavior: auto; }
@@ -178,5 +177,26 @@
 }
 @media screen and (max-height: 500px) and (orientation: landscape) {
   .quote-doc .quote-toolbar { position: relative; }
+  .quote-doc .quotation-section { scroll-margin-top: 16px; }
+}
+
+/* Quotation switcher: each quotation is its own page, so each prints / saves as its own PDF. */
+.quote-doc .quote-doc-switch { max-width: 1080px; margin: auto; display: flex; align-items: center; gap: 18px; padding: 10px 24px 0; }
+.quote-doc .quote-doc-tabs { display: flex; gap: 8px; overflow-x: auto; min-width: 0; }
+.quote-doc .quote-doc-tabs a { display: flex; flex-direction: column; justify-content: center; min-height: 44px; padding: 6px 14px; border: 1px solid #dedbd7; border-radius: 8px; background: white; white-space: nowrap; color: #646466; }
+.quote-doc .quote-doc-tabs a strong { font-size: 12px; font-weight: 700; color: #2b2d30; }
+.quote-doc .quote-doc-tabs a span { font-size: 10px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.quote-doc .quote-doc-tabs a:hover { border-color: #c9c5bf; }
+.quote-doc .quote-doc-tabs a[aria-current="page"] { border-color: #EC7200; background: #fff7ef; box-shadow: inset 0 -2px 0 #EC7200; }
+.quote-doc .quote-doc-tabs a[aria-current="page"] strong { color: #c85f00; }
+.quote-doc .quote-doc-tabs a:focus-visible { outline: 2px solid #EC7200; outline-offset: 3px; }
+@media screen and (max-width: 760px) {
+  .quote-doc .quote-doc-switch { padding: 8px 12px 0; }
+  .quote-doc .quote-doc-switch .quote-jump-label { display: none; }
+  .quote-doc .quote-doc-tabs { width: 100%; }
+  .quote-doc .quote-doc-tabs a { flex: 1; min-width: 0; padding: 5px 10px; }
+  .quote-doc .quote-doc-tabs a span { overflow: hidden; text-overflow: ellipsis; }
+}
+@media screen and (max-height: 500px) and (orientation: landscape) {
   .quote-doc .quotation-section { scroll-margin-top: 16px; }
 }

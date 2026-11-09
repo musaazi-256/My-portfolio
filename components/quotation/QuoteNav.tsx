@@ -1,14 +1,20 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { FileText, Printer, Receipt } from 'lucide-react'
 
 type NavSection = { id: string; label: string }
+type QuoteDocument = { href: string; number: string; label: string; total: number }
 type ViewMode = 'all' | 'finance'
 
-export function QuoteNav({ title, sections, initialMode = 'all' }: {
+export function QuoteNav({ title, subtitle = 'Publication design & printing', sections, documents, currentHref, initialMode = 'all' }: {
   title: string
+  subtitle?: string
   sections: readonly NavSection[]
+  /** Separate quotations for the same client; each one prints / saves as its own PDF. */
+  documents?: readonly QuoteDocument[]
+  currentHref?: string
   initialMode?: ViewMode
 }) {
   const [screenMode, setScreenMode] = useState<ViewMode>(initialMode)
@@ -83,10 +89,23 @@ export function QuoteNav({ title, sections, initialMode = 'all' }: {
 
   return (
     <div className="quote-toolbar no-print sticky top-0 z-30">
+      {documents && documents.length > 1 && (
+        <nav className="quote-doc-switch" aria-label="Quotations">
+          <span className="quote-jump-label" aria-hidden="true">Quotations</span>
+          <div className="quote-doc-tabs scrollbar-none">
+            {documents.map(doc => (
+              <Link key={doc.href} href={screenMode === 'finance' ? `${doc.href}?mode=finance` : doc.href} aria-current={doc.href === currentHref ? 'page' : undefined}>
+                <strong>{doc.label}</strong>
+                <span>{doc.number} · UGX {new Intl.NumberFormat('en-US').format(doc.total)}</span>
+              </Link>
+            ))}
+          </div>
+        </nav>
+      )}
       <div className="quote-toolbar-main">
         <a className="quote-toolbar-title" href="#top" aria-label={`${title}, back to top`}>
           <span className="quote-toolbar-icon"><FileText size={19} aria-hidden="true" /></span>
-          <span>{title}<small>Publication design &amp; printing</small></span>
+          <span>{title}<small>{subtitle}</small></span>
         </a>
         <div className="quote-toolbar-actions">
           <div className="quote-view-switch" role="group" aria-label="Quotation view">
@@ -105,7 +124,7 @@ export function QuoteNav({ title, sections, initialMode = 'all' }: {
       <div className="quote-toolbar-sections">
         <span className="quote-jump-label" aria-hidden="true">Jump to</span>
         <nav ref={linksRef} aria-label="Quotation sections" className="quote-section-links scrollbar-none">
-          {visibleSections.map(section => <a key={section.id} href={`#${section.id}`} aria-current={activeSection === section.id ? 'location' : undefined} onClick={() => setActiveSection(section.id)}>{section.id === 'commercials' ? 'Pricing & terms' : section.label}</a>)}
+          {visibleSections.map(section => <a key={section.id} href={`#${section.id}`} aria-current={activeSection === section.id ? 'location' : undefined} onClick={() => setActiveSection(section.id)}>{section.label}</a>)}
         </nav>
       </div>
     </div>

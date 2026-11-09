@@ -1,24 +1,32 @@
-export const QUOTE = {
-  number: 'WRA-Q-2026-001',
-  date: '20 October 2026',
-  validity: 'Valid for 30 days',
-  total: 2150000,
-  timeline: '2 weeks from kickoff and receipt of all content',
-  from: {
-    name: 'Musaazi Ignatius (Iggy)',
-    title: 'Senior Product Designer & Art Director',
-    location: 'Kampala, Uganda',
-    website: 'musaazi.com',
-    email: 'musaaziignatius@gmail.com',
-  },
-  client: {
-    name: 'Women Rising for Africa (WRA)',
-    location: 'Kampala, Uganda',
-  },
-  project: 'WRA Impact Book / Magazine (2022–2026): editorial design and layout',
+export const ISSUER = {
+  name: 'Musaazi Ignatius (Iggy)',
+  title: 'Senior Product Designer & Art Director',
+  location: 'Kampala, Uganda',
+  website: 'musaazi.com',
+  email: 'musaaziignatius@gmail.com',
 } as const
 
+export const CLIENT = {
+  name: 'Women Rising for Africa (WRA)',
+  location: 'Kampala, Uganda',
+} as const
+
+export const ISSUE_DATE = '20 October 2026'
+export const VALIDITY = 'Valid for 30 days'
+
 export const formatUgx = (value: number) => `UGX ${new Intl.NumberFormat('en-US').format(value)}`
+
+/* ------------------------------------------------------------------ */
+/* Quotation 1: editorial design                                       */
+/* ------------------------------------------------------------------ */
+
+export const DESIGN_QUOTE = {
+  number: 'WRA-Q-2026-001',
+  href: '/quotation/wra/design',
+  shortLabel: 'Editorial design',
+  project: 'WRA Impact Book / Magazine (2022–2026): editorial design and layout',
+  timeline: '2 weeks from kickoff and receipt of all content',
+} as const
 
 export const heroServices = [
   'Editorial Design',
@@ -28,12 +36,12 @@ export const heroServices = [
   'Print & Digital PDFs',
 ]
 
-export const sections = [
+export const designSections = [
+  { id: 'commercials', label: 'Pricing & terms' },
   { id: 'summary', label: 'Summary' },
   { id: 'scope', label: 'Scope' },
   { id: 'deliverables', label: 'Deliverables' },
   { id: 'timeline', label: 'Timeline' },
-  { id: 'commercials', label: 'Commercials' },
   { id: 'client-to-provide', label: 'Client to Provide' },
   { id: 'assumptions', label: 'Assumptions & Exclusions' },
   { id: 'acceptance', label: 'Acceptance' },
@@ -145,18 +153,11 @@ export const pricing = [
   { item: 'Revisions, proofing & final file preparation', amount: 150000 },
 ]
 
-export const printing = {
-  item: 'A5 magazine / book printing',
-  rate: 23000,
-  quantity: 50,
-  total: 50 * 23000,
-  unit: 'per copy',
-  note: '50 A5 copies at UGX 23,000 each. Printing total: UGX 1,150,000.',
-} as const
+export const designTotal = pricing.reduce((sum, row) => sum + row.amount, 0)
 
 export const payments = [
-  { stage: 'Deposit to start work (50%)', share: '50%', amount: 500000, timing: 'Due before commencement' },
-  { stage: 'Delivery of final files (50%)', share: '50%', amount: 500000, timing: 'Due on delivery of final files' },
+  { stage: 'Deposit to start work (50%)', share: '50%', amount: designTotal / 2, timing: 'Due before commencement' },
+  { stage: 'Delivery of final files (50%)', share: '50%', amount: designTotal / 2, timing: 'Due on delivery of final files' },
 ]
 
 export const clientToProvide = [
@@ -168,10 +169,46 @@ export const clientToProvide = [
   'One person to give consolidated feedback',
 ]
 
-export const assumptions = [
-  'Content is mostly final when work starts. Major rewrites are out of scope.',
-  'Includes 2 revision rounds. Extra rounds are billed separately.',
-  'Printing is charged separately at UGX 23,000 per A5 copy. Photography and stock images are not included.',
-  'The timeline begins when the deposit and full content are received. Late content moves the delivery date.',
+/* ------------------------------------------------------------------ */
+/* Quotation 2: printing                                               */
+/* ------------------------------------------------------------------ */
+
+export const PRINT_QUOTE = {
+  number: 'WRA-Q-2026-002',
+  href: '/quotation/wra/printing',
+  shortLabel: 'Printing',
+  project: 'WRA Impact Book / Magazine (2022–2026): A5 printing',
+} as const
+
+export const printSections = [
+  { id: 'commercials', label: 'Pricing & terms' },
+  { id: 'summary', label: 'Summary' },
+  { id: 'specification', label: 'Print specification' },
+  { id: 'assumptions', label: 'Assumptions & Exclusions' },
+  { id: 'acceptance', label: 'Acceptance' },
+] as const
+
+export const printing = {
+  item: 'A5 magazine / book printing',
+  rate: 23000,
+  quantity: 50,
+  total: 50 * 23000,
+  unit: 'per copy',
+  note: '50 A5 copies at UGX 23,000 each. Printing total: UGX 1,150,000.',
+} as const
+
+export const printTotal = printing.quantity * printing.rate
+
+export const printSpecification = [
+  { label: 'Publication', value: 'WRA Impact Book / Magazine (2022–2026)' },
+  { label: 'Format', value: 'A5' },
+  { label: 'Quantity', value: `${printing.quantity} copies` },
+  { label: 'Unit rate', value: `${formatUgx(printing.rate)} ${printing.unit}` },
+  { label: 'Artwork', value: `Approved print-ready PDF from the editorial design quotation (${DESIGN_QUOTE.number})` },
 ]
 
+/** Both quotations, in order, for the document switcher. */
+export const wraQuotes = [
+  { href: DESIGN_QUOTE.href, number: DESIGN_QUOTE.number, label: DESIGN_QUOTE.shortLabel, total: designTotal },
+  { href: PRINT_QUOTE.href, number: PRINT_QUOTE.number, label: PRINT_QUOTE.shortLabel, total: printTotal },
+]
