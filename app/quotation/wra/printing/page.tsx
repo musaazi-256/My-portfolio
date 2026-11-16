@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { QuoteNav } from '@/components/quotation/QuoteNav'
 import { DESIGN_QUOTE, PRINT_QUOTE, formatUgx, printSections, printSpecification, printTotal, printing, wraQuotes } from '../data'
-import { QuoteAcceptance, QuoteFooter, QuoteHeader, QuoteParties, Section, isFinanceMode, number } from '../parts'
+import { QuoteAcceptance, QuoteFooter, QuoteHeader, QuoteParties, QuotePaymentMethods, Section, isFinanceMode, number } from '../parts'
 
 export const metadata: Metadata = {
   // The title becomes the default file name when saving as PDF.
@@ -34,7 +34,7 @@ export default async function WraPrintingQuotationPage({ searchParams }: { searc
           </div>
           <div className="quotation-totals"><dl><div><dt>Printing · {printing.quantity} A5 copies</dt><dd>{formatUgx(printTotal)}</dd></div><div><dt>Tax</dt><dd>{formatUgx(tax)}</dd></div><div className="grand-total"><dt>Total quotation</dt><dd>{formatUgx(grandTotal)}</dd></div></dl></div>
           <div className="quotation-terms">
-            <div><h3>Payment terms</h3><p><strong>Printing: {formatUgx(printTotal)}</strong><br />{printing.quantity} copies at {formatUgx(printing.rate)} {printing.unit}. Payment timing to be agreed before production.</p><p>Payment by mobile money or bank transfer.</p></div>
+            <div><h3>Payment terms</h3><p><strong>Printing: {formatUgx(printTotal)}</strong><br />{printing.quantity} copies at {formatUgx(printing.rate)} {printing.unit}. Payment timing to be agreed before production.</p><QuotePaymentMethods /></div>
             <div><h3>Production &amp; delivery</h3><p>Printing follows approval of the final artwork.</p><p>Print production and delivery dates to be confirmed.</p><p>Editorial design is quoted separately under {DESIGN_QUOTE.number}.</p></div>
           </div>
         </Section>

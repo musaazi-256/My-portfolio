@@ -41,6 +41,16 @@ export function QuoteFooter({ number }: { number: string }) {
   return <footer className="quotation-footer"><span>{number} · {CLIENT.name}</span><a href={`https://${ISSUER.website}`}>{ISSUER.website}</a></footer>
 }
 
+export function QuotePaymentMethods() {
+  return (
+    <>
+      <h3>Payment methods</h3>
+      <p><strong>MTN Mobile Money:</strong> +256783244291<br />Account name: Musaazi Ignatiusofloyola</p>
+      <p><strong>Bank transfer:</strong> Equity Bank Uganda<br />Account name: Musaazi Ignatiusofloyola<br />Account number: 1036100949676<br />SWIFT code: EQBLUGKAXXX</p>
+    </>
+  )
+}
+
 export function Section({ id, title, narrative, children }: { id: string; title: string; narrative?: boolean; children: ReactNode }) {
   return <section id={id} className={`quotation-section ${narrative ? 'quotation-narrative' : ''}`}><h2>{title}</h2>{children}</section>
 }

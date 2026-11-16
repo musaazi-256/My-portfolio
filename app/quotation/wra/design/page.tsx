@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { QuoteNav } from '@/components/quotation/QuoteNav'
 import { DESIGN_QUOTE, PRINT_QUOTE, clientToProvide, deliverables, designSections, designTotal, formatUgx, payments, pricing, scope, timeline, wraQuotes } from '../data'
-import { QuoteAcceptance, QuoteFooter, QuoteHeader, QuoteParties, Section, isFinanceMode, number } from '../parts'
+import { QuoteAcceptance, QuoteFooter, QuoteHeader, QuoteParties, QuotePaymentMethods, Section, isFinanceMode, number } from '../parts'
 
 export const metadata: Metadata = {
   // The title becomes the default file name when saving as PDF.
@@ -34,7 +34,7 @@ export default async function WraDesignQuotationPage({ searchParams }: { searchP
           </div>
           <div className="quotation-totals"><dl><div><dt>Design services</dt><dd>{formatUgx(designTotal)}</dd></div><div><dt>Tax</dt><dd>{formatUgx(tax)}</dd></div><div className="grand-total"><dt>Total quotation</dt><dd>{formatUgx(grandTotal)}</dd></div></dl></div>
           <div className="quotation-terms">
-            <div><h3>Payment terms</h3>{payments.map(row => <p key={row.stage}><strong>{row.stage}: {formatUgx(row.amount)}</strong><br />{row.timing}.</p>)}<p>Payment by mobile money or bank transfer.</p></div>
+            <div><h3>Payment terms</h3>{payments.map(row => <p key={row.stage}><strong>{row.stage}: {formatUgx(row.amount)}</strong><br />{row.timing}.</p>)}<QuotePaymentMethods /></div>
             <div><h3>Delivery</h3><p>Design: {DESIGN_QUOTE.timeline}.</p><p>Includes 2 revision rounds, print-ready and screen-optimised PDFs, and packaged source files.</p><p>Printing is quoted separately under {PRINT_QUOTE.number}.</p></div>
           </div>
         </Section>
