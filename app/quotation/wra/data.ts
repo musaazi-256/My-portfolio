@@ -190,11 +190,11 @@ export const printSections = [
 
 export const printing = {
   item: 'A5 magazine / book printing',
-  rate: 23000,
-  quantity: 50,
-  total: 50 * 23000,
+  rate: 27000,
+  quantity: 51,
+  total: 51 * 27000,
   unit: 'per copy',
-  note: '50 A5 copies at UGX 23,000 each. Printing total: UGX 1,150,000.',
+  note: '51 A5 copies at UGX 27,000 each. Printing total: UGX 1,377,000.',
 } as const
 
 export const printTotal = printing.quantity * printing.rate
