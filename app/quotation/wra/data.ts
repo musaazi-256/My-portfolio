@@ -147,7 +147,7 @@ export const timeline = [
 
 export const pricing = [
   { item: 'Art direction & design system', amount: 200000 },
-  { item: 'Page layout (all sections)', amount: 400000 },
+  { item: 'Page layout (all sections)', amount: 600000 },
   { item: 'Infographics, charts, map & SDG grid', amount: 150000 },
   { item: 'Copy editing & content structuring', amount: 100000 },
   { item: 'Revisions, proofing & final file preparation', amount: 150000 },
