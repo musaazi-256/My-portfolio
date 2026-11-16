@@ -51,6 +51,17 @@ export function QuotePaymentMethods() {
   )
 }
 
+export function QuoteDelivery() {
+  return (
+    <section id="digital-delivery" className="quotation-section no-print">
+      <h2>Digital delivery &amp; printing proof</h2>
+      <p>The WRA Impact Report Book 2025–2026 is available as part of the digital delivery of this work.</p>
+      <a className="quotation-download" href="/downloads/wra/wra-impact-report-2025-2026.pdf" download="WRA Impact Report Book 2025 - 2026.pdf">Download WRA Impact Report Book 2025–2026 <span>(PDF · 100 MB)</span></a>
+      <p><strong>Printing proof — to follow.</strong> Photos of the printed books will be added here once available.</p>
+    </section>
+  )
+}
+
 export function Section({ id, title, narrative, children }: { id: string; title: string; narrative?: boolean; children: ReactNode }) {
   return <section id={id} className={`quotation-section ${narrative ? 'quotation-narrative' : ''}`}><h2>{title}</h2>{children}</section>
 }

@@ -1,4 +1,8 @@
 /* WRA quotation: branded document layout, scoped to this route. */
+.quote-doc .quotation-download { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 16px 0; padding: 14px 18px; border-radius: 8px; background: #EC7200; color: white; font-size: 14px; font-weight: 700; }
+.quote-doc .quotation-download:hover { background: #c85f00; }
+.quote-doc .quotation-download:focus-visible { outline: 2px solid #EC7200; outline-offset: 4px; }
+.quote-doc .quotation-download span { font-size: 12px; font-weight: 400; }
 .quote-doc { background: #ededed; min-height: 100vh; padding-bottom: 48px; }
 .quote-doc .quotation-sheet { max-width: 1000px; margin: 32px auto 0; padding: 52px 56px 28px; background: white; border-top: 5px solid var(--quote-brand, #EC7200); box-shadow: 0 6px 30px #2b2d300a; }
 .quote-doc .quotation-header { display: flex; justify-content: space-between; gap: 32px; padding-bottom: 28px; border-bottom: 2px solid #2b2d30; }

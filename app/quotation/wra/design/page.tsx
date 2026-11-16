@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { QuoteNav } from '@/components/quotation/QuoteNav'
 import { DESIGN_QUOTE, PRINT_QUOTE, clientToProvide, deliverables, designSections, designTotal, formatUgx, payments, pricing, scope, timeline, wraQuotes } from '../data'
-import { QuoteAcceptance, QuoteFooter, QuoteHeader, QuoteParties, QuotePaymentMethods, Section, isFinanceMode, number } from '../parts'
+import { QuoteAcceptance, QuoteDelivery, QuoteFooter, QuoteHeader, QuoteParties, QuotePaymentMethods, Section, isFinanceMode, number } from '../parts'
 
 export const metadata: Metadata = {
   // The title becomes the default file name when saving as PDF.
@@ -53,6 +53,7 @@ export default async function WraDesignQuotationPage({ searchParams }: { searchP
         </Section>
         <Section id="client-to-provide" title="Client to provide" narrative><ul>{clientToProvide.map(item => <li key={item}>{item}</li>)}</ul></Section>
         <Section id="assumptions" title="Assumptions & exclusions" narrative><ul><li>Content is mostly final when work starts. Major rewrites and creation of new raw copy are outside this scope.</li><li>Includes 2 revision rounds. Additional rounds are billed separately.</li><li>Printing is not included in this quotation; it is quoted separately under {PRINT_QUOTE.number}.</li><li>Photography and stock images are excluded.</li><li>The design timeline begins upon receipt of the deposit and full content. Late content moves the delivery date.</li></ul></Section>
+        <QuoteDelivery />
         <QuoteAcceptance total={grandTotal} />
         <QuoteFooter number={DESIGN_QUOTE.number} />
       </article>

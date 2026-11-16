@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { QuoteNav } from '@/components/quotation/QuoteNav'
 import { DESIGN_QUOTE, PRINT_QUOTE, formatUgx, printSections, printSpecification, printTotal, printing, wraQuotes } from '../data'
-import { QuoteAcceptance, QuoteFooter, QuoteHeader, QuoteParties, QuotePaymentMethods, Section, isFinanceMode, number } from '../parts'
+import { QuoteAcceptance, QuoteDelivery, QuoteFooter, QuoteHeader, QuoteParties, QuotePaymentMethods, Section, isFinanceMode, number } from '../parts'
 
 export const metadata: Metadata = {
   // The title becomes the default file name when saving as PDF.
@@ -46,6 +46,7 @@ export default async function WraPrintingQuotationPage({ searchParams }: { searc
           <dl className="quotation-timeline">{printSpecification.map(row => <div key={row.label}><dt>{row.label}</dt><dd>{row.value}</dd></div>)}</dl>
         </Section>
         <Section id="assumptions" title="Assumptions & exclusions" narrative><ul><li>Printing starts only after the final artwork has been approved.</li><li>Editorial design, layout and artwork preparation are not included; they are quoted separately under {DESIGN_QUOTE.number}.</li><li>Production and delivery dates are confirmed once the artwork is approved.</li></ul></Section>
+        <QuoteDelivery />
         <QuoteAcceptance total={grandTotal} />
         <QuoteFooter number={PRINT_QUOTE.number} />
       </article>
